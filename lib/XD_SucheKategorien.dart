@@ -1,394 +1,476 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
+import 'package:app_ummel/XD_Favoriten.dart';
+import 'package:app_ummel/XD_Home.dart';
+import 'package:app_ummel/XD_Suche.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/rendering.dart';
 
-import './XD_Suche.dart';
-import './XD_SucheKategorien1.dart';
-import './XD_TopKomponente.dart';
+class XD_SucheKategorien extends StatefulWidget {
+  _SucheKategorien createState() => _SucheKategorien();
+}
 
-class XD_SucheKategorien extends StatelessWidget {
-  XD_SucheKategorien({
-    Key? key,
-  }) : super(key: key);
+class _SucheKategorien extends State<XD_SucheKategorien> {
+  bool _hasBeenPressed1 = false;
+  bool _hasBeenPressed2 = false;
+  bool _hasBeenPressed3 = false;
+  bool _hasBeenPressed4 = false;
+  bool _hasBeenPressed5 = false;
+  bool _hasBeenPressed6 = false;
+  bool _hasBeenPressed7 = false;
+  bool _hasBeenPressed8 = false;
+  bool _hasBeenPressed9 = false;
+  bool _hasBeenPressed10 = false;
+  bool _hasBeenPressed11 = false;
+  bool _hasBeenPressed12 = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffffff),
-      body: Stack(
-        children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(size: 375.0, middle: 0.5),
-            Pin(start: 90.0, end: 56.0),
-            child: SingleChildScrollView(
-              child: SizedBox(
-                width: 375.0,
-                height: 850.0,
-                child: Stack(
-                  children: <Widget>[
-                    Pinned.fromPins(
-                      Pin(start: 18.0, end: 17.0),
-                      Pin(size: 45.0, end: -329.0),
-                      child:
-                          // Adobe XD layer: 'Bestätigen' (group)
-                          Stack(
-                        children: <Widget>[
-                          Pinned.fromPins(
-                            Pin(start: 0.0, end: 0.0),
-                            Pin(start: 0.0, end: 0.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: const Color(0xffffb420),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: const Color(0x29000000),
-                                    offset: Offset(0, 3),
-                                    blurRadius: 6,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Pinned.fromPins(
-                            Pin(size: 78.0, middle: 0.5),
-                            Pin(size: 20.0, middle: 0.52),
-                            child: Text(
-                              'Bestätigen',
-                              style: TextStyle(
-                                fontFamily: 'Quicksand',
-                                fontSize: 16,
-                                color: const Color(0xffffffff),
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                        ],
+        backgroundColor: const Color(0xffffffff),
+        appBar: AppBar(
+          title: IconButton(
+            icon: Image.asset("images/UmmelLogo.png"),
+            iconSize: 50,
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => XD_Home()));
+              //Bestätigen Action
+            },
+          ),
+          backgroundColor: Color(0xffffb420),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(ummel_icons.favblume_leer),
+              iconSize: 35,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => XD_Favoriten()));
+                //Bestätigen Action
+              },
+            ),
+          ],
+        ),
+        body: Stack(alignment: Alignment.centerLeft, children: <Widget>[
+          ListView(
+            scrollDirection: Axis.vertical,
+            children: <Widget>[
+              Positioned(
+                top: 0.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed1 = !_hasBeenPressed1;
+                      })
+                    },
+                    child: Text(
+                      '    Haus & Garten',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, middle: 0.5163),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed1
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
                     ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: -274.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: -212.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: -150.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: -26.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: 36.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, middle: 0.7865),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, middle: 0.6514),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, end: -88.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 60.0, start: 53.0),
-                      child: PageLink(
-                        links: [
-                          PageLinkInfo(
-                            transition: LinkTransition.Fade,
-                            ease: Curves.easeOut,
-                            duration: 0.3,
-                            pageBuilder: () => XD_SucheKategorien1(),
-                          ),
-                        ],
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xffffffff),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, middle: 0.2462),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(start: 0.0, end: 0.0),
-                      Pin(size: 62.0, middle: 0.3813),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 55.0, middle: 0.2344),
-                      Pin(size: 20.0, middle: 0.6387),
-                      child: Text(
-                        'Technik',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 125.0, middle: 0.3),
-                      Pin(size: 20.0, start: 72.0),
-                      child: Text(
-                        'Haus und Garten',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 112.0, middle: 0.2852),
-                      Pin(size: 20.0, middle: 0.3912),
-                      child: Text(
-                        'Sport & Freizeit',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 65.0, middle: 0.2419),
-                      Pin(size: 20.0, middle: 0.2675),
-                      child: Text(
-                        'Kleidung',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 97.0, middle: 0.2698),
-                      Pin(size: 20.0, middle: 0.515),
-                      child: Text(
-                        'Unterhaltung',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 91.0, middle: 0.2641),
-                      Pin(size: 20.0, middle: 0.7625),
-                      child: Text(
-                        'Baby & Kind',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 44.0, middle: 0.2266),
-                      Pin(size: 20.0, end: -253.0),
-                      child: Text(
-                        'Pfand',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 46.0, start: 0.0),
-                      Pin(size: 52.0, start: 0.0),
-                      child: PageLink(
-                        links: [
-                          PageLinkInfo(
-                            transition: LinkTransition.Fade,
-                            ease: Curves.easeOut,
-                            duration: 0.3,
-                            pageBuilder: () => XD_Suche(),
-                          ),
-                        ],
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xffffffff),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 8.0, start: 19.0),
-                      Pin(size: 21.0, start: 17.5),
-                      child:
-                          // Adobe XD layer: 'layer1' (group)
-                          Stack(
-                        children: <Widget>[
-                          Pinned.fromPins(
-                            Pin(start: 0.0, end: 0.0),
-                            Pin(start: 0.0, end: 0.0),
-                            child:
-                                // Adobe XD layer: 'path835' (shape)
-                                SvgPicture.string(
-                              _svg_ce8hze,
-                              allowDrawingOutsideViewBox: true,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 94.0, middle: 0.2669),
-                      Pin(size: 20.0, end: 57.0),
-                      child: Text(
-                        'Lebensmittel',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 121.0, middle: 0.2953),
-                      Pin(size: 20.0, end: -5.0),
-                      child: Text(
-                        'Bauen & Basteln',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 68.0, middle: 0.2443),
-                      Pin(size: 20.0, end: -67.0),
-                      child: Text(
-                        'Kosmetik',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 78.0, middle: 0.2525),
-                      Pin(size: 20.0, end: -129.0),
-                      child: Text(
-                        'Tierbedarf',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Pinned.fromPins(
-                      Pin(size: 69.0, middle: 0.2451),
-                      Pin(size: 20.0, end: -191.0),
-                      child: Text(
-                        'Fahrzeug',
-                        style: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 16,
-                          color: const Color(0xff000000),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
+              Positioned(
+                top: 70.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed2 = !_hasBeenPressed2;
+                      })
+                    },
+                    child: Text(
+                      '    Kleidung',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed2
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 140.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed3 = !_hasBeenPressed3;
+                      })
+                    },
+                    child: Text(
+                      '    Sport & Freizeit',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed3
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 210.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed4 = !_hasBeenPressed4;
+                      })
+                    },
+                    child: Text(
+                      '    Unterhaltung',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed4
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 280.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed5 = !_hasBeenPressed5;
+                      })
+                    },
+                    child: Text(
+                      '    Technik',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed5
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 350.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed6 = !_hasBeenPressed6;
+                      })
+                    },
+                    child: Text(
+                      '    Baby & Kind',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed6
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 420.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed7 = !_hasBeenPressed7;
+                      })
+                    },
+                    child: Text(
+                      '    Lebensmittel',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed7
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 490.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed8 = !_hasBeenPressed8;
+                      })
+                    },
+                    child: Text(
+                      '    Bauen & Basteln',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed8
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 560.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed9 = !_hasBeenPressed9;
+                      })
+                    },
+                    child: Text(
+                      '    Kosmetik',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed9
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 630.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed10 = !_hasBeenPressed10;
+                      })
+                    },
+                    child: Text(
+                      '    Tierbedarf',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed10
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 700.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed11 = !_hasBeenPressed11;
+                      })
+                    },
+                    child: Text(
+                      '    Fahrzeug',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed11
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 770.0,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 70,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                      setState(() {
+                        _hasBeenPressed12 = !_hasBeenPressed12;
+                      })
+                    },
+                    child: Text(
+                      '    Pfand',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 16,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      primary: _hasBeenPressed12
+                          ? Color(0xffffb420)
+                          : Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 850,
+                child: Container(
+                  height: 30,
+                ),
+              ),
+              Positioned(
+                top: 880.0,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => XD_Suche()));
+                      //Bestätigen Action
+                    },
+                    child: Text('Bestätigen'),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(350, 45),
+                      primary: Color(0xffffb420),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 970,
+                child: Container(
+                  height: 100,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ]));
   }
 }
 

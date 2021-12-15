@@ -1,26 +1,38 @@
 import 'dart:io';
 
-import 'package:adobe_xd/pinned.dart';
-import 'package:app_ummel/XD_AnzeigeaufgebenStraenfund5.dart';
+import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
+import 'package:app_ummel/XD_Favoriten.dart';
+import 'package:app_ummel/XD_Home.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
-import './XD_TopKomponente.dart';
-
 class XD_AnzeigeaufgebenStraenfund1 extends StatefulWidget {
   @override
-  _XD_AnzeigeaufgebenStraenfund1 createState() =>
-      new _XD_AnzeigeaufgebenStraenfund1();
+  _XDAnzeigeaufgebenStaenfund1 createState() =>
+      new _XDAnzeigeaufgebenStaenfund1();
 }
 
-class _XD_AnzeigeaufgebenStraenfund1
+class _XDAnzeigeaufgebenStaenfund1
     extends State<XD_AnzeigeaufgebenStraenfund1> {
-  @override
   List<Asset> images = <Asset>[];
+  File? _image;
+
   @override
   void initState() {
     super.initState();
+  }
+
+  Future _getFromCamera() async {
+    var image = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxWidth: 1920,
+      maxHeight: 1080,
+    );
+    setState(() {
+      _image = File(image!.path);
+    });
   }
 
   Widget buildGridView() {
@@ -86,129 +98,110 @@ class _XD_AnzeigeaufgebenStraenfund1
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
+          ),
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
+          /* Pinned.fromPins(
             Pin(size: 300.0, start: 50.0),
             Pin(size: 400.0, start: 320.0),
             child: Expanded(
               child: buildGridView(),
             ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, middle: 0.4),
-            child:
-                // Adobe XD layer: 'Foto aufnehmen' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 350.0, middle: 0.4982),
-                  Pin(size: 45.0, middle: 0.52),
-                  child: Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: ElevatedButton(
-                          onPressed: loadAssets,
-                          child: Text('Foto hinzufügen'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffffb420),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, middle: 0.85),
-            child:
-                // Adobe XD layer: 'Aus Galerie hochlad…' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 350.0, middle: 0.4982),
-                  Pin(size: 45.0, middle: 0.52),
-                  child: Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    XD_AnzeigeaufgebenStraenfund5()));
-                            //Bestätigen Action
-                          },
-                          child: Text('Bestätigen'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffffb420),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 168.0, middle: 0.4493),
-            Pin(size: 18.0, middle: 0.3174),
-            child: Text(
-              'Füge bis zu 6 Fotos hinzu.',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 14,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 156.0, middle: 0.4521),
-            Pin(size: 25.0, middle: 0.2773),
+          ), */
+          Positioned(
+            top: 108.0,
             child: Text(
               'Fotos hochladen',
               style: TextStyle(
                 fontFamily: 'Quicksand',
-                fontSize: 20,
+                fontSize: 22,
                 color: const Color(0xffffb420),
                 fontWeight: FontWeight.w500,
               ),
-              textAlign: TextAlign.center,
+            ),
+          ),
+          Positioned(
+            top: 138.0,
+            child: Text(
+              'Füge bis zu 6 Fotos hinzu',
+              style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontSize: 14,
+                color: const Color(0xff000000),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 316.0,
+            child: ElevatedButton.icon(
+              onPressed: loadAssets,
+              label: Text('Galerie'),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(350, 45),
+                primary: Color(0xffffb420),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+              ),
+              icon: const Icon(Icons.camera_alt_outlined),
+            ),
+          ),
+          Positioned(
+            top: 241.0,
+            child: ElevatedButton.icon(
+              onPressed: _getFromCamera,
+              label: Text('Kamera'),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(350, 45),
+                primary: Color(0xffffb420),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+              ),
+              icon: const Icon(Icons.camera_alt_outlined),
+            ),
+          ),
+          Positioned(
+            top: 537.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => XD_Anzeigeaufgeben10()));
+                //Bestätigen Action
+              },
+              child: Text('Bestätigen'),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(350, 45),
+                primary: Color(0xffffb420),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+              ),
             ),
           ),
         ],
       ),
-    );
-  }
-
-  File? imageFile;
-  _getFromGallery() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.gallery,
-      maxWidth: 1920,
-      maxHeight: 1080,
-    );
-  }
-
-  _getFromCamera() async {
-    PickedFile? pickedFile = await ImagePicker().getImage(
-      source: ImageSource.camera,
-      maxWidth: 1920,
-      maxHeight: 1080,
     );
   }
 }

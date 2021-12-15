@@ -1,11 +1,10 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
+import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
+import 'package:app_ummel/XD_Map1.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import './XD_SucheKategorien.dart';
-import './XD_TopKomponente.dart';
 
 class XD_Suche extends StatelessWidget {
   XD_Suche({
@@ -15,146 +14,145 @@ class XD_Suche extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
+          ),
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 40.0, middle: 0.4545),
-            child:
-                // Adobe XD layer: 'Suchbegriff' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: TextFormField(
-                    cursorColor: Color(0xffffb420),
-                    decoration: InputDecoration(
-                        labelText: "Suchbegriff",
-                        labelStyle: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 20,
-                          color: const Color(0x80ffc857),
-                          fontWeight: FontWeight.w500,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.black38),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, end: 85.0),
-            child: Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => XD_Home()));
-                      //Bestätigen Action
-                    },
-                    child: Text('Suchen'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color(0xffffb420),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 218.0, middle: 0.5032),
-            Pin(size: 25.0, middle: 0.2804),
+          Positioned(
+            top: 108.0,
             child: Text(
               'Verfeinere deine Suche',
               style: TextStyle(
                 fontFamily: 'Quicksand',
-                fontSize: 20,
+                fontSize: 22,
                 color: const Color(0xffffb420),
                 fontWeight: FontWeight.w500,
               ),
-              textAlign: TextAlign.left,
             ),
           ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 50.0, middle: 0.5543),
-            child: PageLink(
-              links: [
-                PageLinkInfo(
-                  transition: LinkTransition.Fade,
-                  ease: Curves.easeOut,
-                  duration: 0.3,
-                  pageBuilder: () => XD_SucheKategorien(),
-                ),
-              ],
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(width: 1.0, color: Colors.transparent),
-                ),
+          Positioned(
+            top: 200.0,
+            child: SizedBox(
+              width: 340,
+              height: 40,
+              child: TextFormField(
+                cursorColor: Color(0xffffb420),
+                decoration: InputDecoration(
+                    labelText: "Suchbegriff",
+                    labelStyle: TextStyle(
+                      fontFamily: 'Quicksand',
+                      fontSize: 20,
+                      color: const Color(0x80ffc857),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black45),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(color: Colors.black38),
+                    )),
               ),
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 164.0, start: 18.0),
-            Pin(size: 20.0, middle: 0.5518),
-            child: Text(
-              'Kategorien auswählen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 3.5, middle: 0.5168),
-            Pin(size: 9.2, middle: 0.5526),
-            child:
-                // Adobe XD layer: 'layer1' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'path835' (shape)
-                      SvgPicture.string(
-                    _svg_d75ej,
-                    allowDrawingOutsideViewBox: true,
-                    fit: BoxFit.fill,
+          Positioned(
+            top: 280.0,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 70,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => XD_SucheKategorien()));
+                  //Bestätigen Action
+                },
+                child: Text(
+                  '     Kategorien auswählen',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontSize: 16,
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              ],
+                style: ElevatedButton.styleFrom(
+                  alignment: Alignment.centerLeft,
+                  primary: Color(0xffffffff),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0.0)),
+                ),
+              ),
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 132.0, start: 18.0),
-            Pin(size: 20.0, middle: 0.6275),
-            child: Text(
-              'Suchort anpassen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
+          Positioned(
+            top: 350.0,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 70,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => XD_Map1()));
+                  //Bestätigen Action
+                },
+                child: Text(
+                  '     Suchort anpassen',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontSize: 16,
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  alignment: Alignment.centerLeft,
+                  primary: Color(0xffffffff),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0.0)),
+                ),
               ),
-              textAlign: TextAlign.left,
+            ),
+          ),
+          Positioned(
+            top: 537.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => XD_Home()));
+                //Bestätigen Action
+              },
+              child: Text('Bestätigen'),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(350, 45),
+                primary: Color(0xffffb420),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+              ),
             ),
           ),
         ],

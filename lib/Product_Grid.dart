@@ -21,8 +21,7 @@ class _ProductGridState extends State<ProductGrid> {
   final List<ProductGridItem> _productList = [
     ProductGridItem('images/ak-selfie.jpg', 'AK-47', '91113', 'Olvenstedt'),
     ProductGridItem('images/dodge.jpg', 'Dodge', '231123', 'Spandau'),
-    ProductGridItem(
-        'images/huehnersuppe.jpg', 'Huhn flüssig', '21301', 'Magdeburg'),
+    ProductGridItem('images/huehnersuppe.jpg', 'Huhn flüssig', '21301', 'Magdeburg'),
     ProductGridItem('images/katze.jpg', 'Katze', '12093', 'Neustedter See'),
     ProductGridItem('images/Melone.jpg', 'Gurke', '123901', 'Neustadt'),
     ProductGridItem('images/milchprodukte.jpg', 'Laktose', '10292', 'Hafen'),

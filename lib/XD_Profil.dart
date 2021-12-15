@@ -1,11 +1,9 @@
-import 'package:adobe_xd/pinned.dart';
-import 'package:app_ummel/XD_Profil1.dart';
+import 'package:app_ummel/Paragraph.dart';
+import 'package:app_ummel/XD_Favoriten.dart';
+import 'package:app_ummel/XD_Home.dart';
+import 'package:app_ummel/XD_MeinProfil.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
-import './XD_MeinProfil.dart';
-import './XD_Standort.dart';
-import './XD_TopKomponente.dart';
 
 class XD_Profil extends StatelessWidget {
   XD_Profil({
@@ -15,353 +13,271 @@ class XD_Profil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
+          ),
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.topLeft,
         children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(size: 24.0, start: 26.0),
-            Pin(size: 21.1, start: 120.4),
-            child:
-                // Adobe XD layer: 'layer1' (group)
-                Stack(
+          Positioned(
+            top: 0.0,
+            child: Stack(
               children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 10.3, middle: 0.5),
-                  Pin(size: 10.3, start: 0.0),
-                  child:
-                      // Adobe XD layer: 'path835' (shape)
-                      SvgPicture.string(
-                    _svg_2757h7,
-                    allowDrawingOutsideViewBox: true,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(size: 9.3, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'rect843' (shape)
-                      SvgPicture.string(
-                    _svg_vd54t1,
-                    allowDrawingOutsideViewBox: true,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Profil',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon:
+                        Icon(Icons.person, color: Color(0xffffb420), size: 35)),
               ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 97.0, start: 75.0),
-            Pin(size: 20.0, start: 121.0),
-            child: Text(
-              'Mein Profil',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 96.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_MeinProfil()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(25.0, 188.0),
-            child: SizedBox(
-              width: 26.0,
-              height: 26.0,
-              child:
-                  // Adobe XD layer: 'layer1' (group)
-                  Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 26.0,
-                    height: 26.0,
-                    child: SvgPicture.string(
-                      _svg_y2deon,
-                      allowDrawingOutsideViewBox: true,
+          Positioned(
+            top: 70.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Einstellungen',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 97.0, start: 75.0),
-            Pin(size: 20.0, start: 191.0),
-            child: Text(
-              'Einstellungen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 166.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_Profil1()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 97.0, start: 75.0),
-            Pin(size: 20.0, start: 260.0),
-            child: Text(
-              'Suchort',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 19.47, start: 25.0),
-            Pin(size: 25.64, start: 257.03),
-            child: Icon(
-              Icons.location_pin,
-              color: Color(0xffffb420),
-              size: 30,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 236.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_Standort()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(30.56, 326.5),
-            child: SizedBox(
-              width: 15.0,
-              height: 26.0,
-              child:
-                  // Adobe XD layer: 'layer1' (group)
-                  Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 15.0,
-                    height: 26.0,
-                    child:
-                        // Adobe XD layer: 'text835' (group)
-                        Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 15.0,
-                          height: 26.0,
-                          child: SvgPicture.string(
-                            _svg_duzcyy,
-                            allowDrawingOutsideViewBox: true,
-                          ),
-                        ),
-                      ],
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
                     ),
-                  ),
-                ],
-              ),
+                    icon: Icon(
+                      Icons.settings,
+                      color: Color(0xffffb420),
+                      size: 35,
+                    )),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 200.0, start: 75.0),
-            Pin(size: 50.0, start: 331.0),
-            child: Text(
-              'Fragen und Antworten',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 306.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_MeinProfil()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(30.5, 398.0),
-            child: SizedBox(
-              width: 15.0,
-              height: 26.0,
-              child:
-                  // Adobe XD layer: 'layer1' (group)
-                  Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 15.0,
-                    height: 26.0,
-                    child:
-                        // Adobe XD layer: 'text835' (group)
-                        Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 15.0,
-                          height: 26.0,
-                          child: SvgPicture.string(
-                            _svg_duzcyy,
-                            allowDrawingOutsideViewBox: true,
-                          ),
-                        ),
-                      ],
+          Positioned(
+            top: 140.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Suchort',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 200.0, start: 75.0),
-            Pin(size: 20.0, start: 400.0),
-            child: Text(
-              'Kontaktiere uns',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 376.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_MeinProfil()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(30.6, 468.0),
-            child: SizedBox(
-              width: 15.0,
-              height: 26.0,
-              child:
-                  // Adobe XD layer: 'layer1' (group)
-                  Stack(
-                children: <Widget>[
-                  SizedBox(
-                    width: 15.0,
-                    height: 26.0,
-                    child:
-                        // Adobe XD layer: 'text872' (group)
-                        Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 15.0,
-                          height: 26.0,
-                          child: SvgPicture.string(
-                            _svg_fad66z,
-                            allowDrawingOutsideViewBox: true,
-                          ),
-                        ),
-                      ],
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
                     ),
-                  ),
-                ],
-              ),
+                    icon: Icon(
+                      Icons.location_on,
+                      color: Color(0xffffb420),
+                      size: 35,
+                    )),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 97.0, start: 75.0),
-            Pin(size: 20.0, start: 469.0),
-            child: Text(
-              'Rechtliches',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
+          Positioned(
+            top: 210.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Fragen & Antworten',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon: Icon(
+                      Icons.help_rounded,
+                      color: Color(0xffffb420),
+                      size: 35,
+                    )),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 446.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_MeinProfil()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
+          Positioned(
+            top: 280.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Kontaktiere uns',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon: Icon(
+                      Icons.question_answer_rounded,
+                      color: Color(0xffffb420),
+                      size: 35,
+                    )),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 200.0, start: 75.0),
-            Pin(size: 20.0, start: 541.0),
-            child: Text(
-              'Freunde einladen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
+          Positioned(
+            top: 350.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '     Rechtliches',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon: Icon(
+                      Paragraph.rechtliches,
+                      color: Color(0xffffb420),
+                      size: 30,
+                    )),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(size: 31.93, start: 22.14),
-            Pin(size: 18.36, start: 535.82),
-            child: Icon(
-              Icons.groups,
-              color: Color(0xffffb420),
-              size: 33,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, start: 516.0),
-            child: FlatButton(
-              color: Colors.transparent,
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => XD_MeinProfil()));
-                //Bestätigen Action
-              },
-              child: Text(' '),
+          Positioned(
+            top: 420.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      '    Kontaktiere uns',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon: Icon(
+                      Icons.groups_sharp,
+                      color: Color(0xffffb420),
+                      size: 35,
+                    )),
+              ],
             ),
           ),
         ],
