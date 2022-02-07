@@ -298,12 +298,12 @@ class XD_Anzeigeanschauen2 extends StatelessWidget {
                                 // Adobe XD layer: 'Einstellungen' (group)
                                 PageLink(
                               links: [
-                                PageLinkInfo(
-                                  transition: LinkTransition.Fade,
-                                  ease: Curves.easeOut,
-                                  duration: 0.3,
-                                  pageBuilder: () => XD_Anzeigeanschauen(),
-                                ),
+                             //   PageLinkInfo(
+                               //   transition: LinkTransition.Fade,
+                               //   ease: Curves.easeOut,
+                               //   duration: 0.3,
+                               //   pageBuilder: () => XD_Anzeigeanschauen(),
+                              //  ),
                               ],
                               child: Stack(
                                 children: <Widget>[

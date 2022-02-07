@@ -1,9 +1,8 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
-import './XD_Profil2.dart';
-import './XD_TopKomponente.dart';
+import 'XD_Favoriten.dart';
+import 'XD_Home.dart';
 
 class XD_Beschmutzername extends StatelessWidget {
   XD_Beschmutzername({
@@ -13,91 +12,85 @@ class XD_Beschmutzername extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
+          ),
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, end: 85.0),
-            child:
-                // Adobe XD layer: 'Ändern' (group)
-                PageLink(
-              links: [
-                PageLinkInfo(
-                  transition: LinkTransition.Fade,
-                  ease: Curves.easeOut,
-                  duration: 0.3,
-                  pageBuilder: () => XD_Profil2(),
-                ),
-              ],
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(start: 0.0, end: 0.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => XD_Profil2()));
-                        //Bestätigen Action
-                      },
-                      child: Text('ÄNDERN'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color(0xffffb420),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 40.0, middle: 0.4928),
-            child:
-                // Adobe XD layer: 'Suchbegriff' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: TextFormField(
-                    cursorColor: Color(0xffffb420),
-                    decoration: InputDecoration(
-                        labelText: "Neuen Benutzernamen wählen",
-                        labelStyle: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 20,
-                          color: const Color(0x80ffc857),
-                          fontWeight: FontWeight.w500,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.black38),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 239.0, middle: 0.5809),
-            Pin(size: 28.0, middle: 0.2786),
+          Positioned(
+            top: 108.0,
             child: Text(
-              'Benutzername ändern ',
+              'Benutzernamen ändern',
               style: TextStyle(
                 fontFamily: 'Quicksand',
                 fontSize: 22,
                 color: const Color(0xffffb420),
                 fontWeight: FontWeight.w500,
               ),
-              textAlign: TextAlign.left,
+            ),
+          ),
+          Positioned(
+            top: 240.0,
+            child: SizedBox(
+              width: 340,
+              height: 40,
+              child: TextFormField(
+                cursorColor: Color(0xffffb420),
+                decoration: InputDecoration(
+                    labelText: "neuer Benutzername",
+                    labelStyle: TextStyle(
+                      fontFamily: 'Quicksand',
+                      fontSize: 20,
+                      color: const Color(0x80ffc857),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black45),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(color: Colors.black38),
+                    )),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 537.0,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => XD_Home()));
+                //Bestätigen Action
+              },
+              child: Text('Bestätigen'),
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(350, 45),
+                primary: Color(0xffffb420),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+              ),
             ),
           ),
         ],

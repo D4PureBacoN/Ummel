@@ -1,256 +1,584 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
 import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
 import 'package:app_ummel/XD_AnzeigeaufgebenArtikel1.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
-import './XD_TopKomponente.dart';
+import 'XD_Favoriten.dart';
+import 'XD_Home.dart';
 
 class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
-  XD_AnzeigeaufgebenArtikel4({
-    Key? key,
-  }) : super(key: key);
+  List<Asset>? images2 = <Asset>[];
+  XD_AnzeigeaufgebenArtikel4({Key? key, @required this.images2})
+      : super(key: key);
+
   @override
+  Widget buildGridView() {
+    return GridView.count(
+      crossAxisCount: 3,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 20,
+      children: List.generate(images2!.length, (index) {
+        Asset asset = images2![index];
+        return AssetThumb(
+          asset: asset,
+          width: 300,
+          height: 300,
+        );
+      }),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      body: Stack(
-        children: <Widget>[
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, end: 85.0),
-            child:
-                // Adobe XD layer: 'Bestätigen' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 350.0, middle: 0.4982),
-                  Pin(size: 45.0, middle: 0.52),
-                  child: Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => XD_Anzeigeaufgeben10()));
-                            //Bestätigen Action
-                          },
-                          child: Text('Bestätigen'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffffb420),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
           ),
-          Pinned.fromPins(
-            Pin(size: 110.0, end: 28.0),
-            Pin(size: 115.0, middle: 0.659),
-            child:
-                // Adobe XD layer: 'Plus' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 5.0, end: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 109.0, middle: 0.0),
-                  Pin(start: 5.0, end: 0.0),
-                  child: FlatButton(
-                    color: Colors.transparent,
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_AnzeigeaufgebenArtikel1()));
-                      //Bestätigen Action
-                    },
-                    child: Text.rich(
-                      TextSpan(
+        ],
+      ),
+      body: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          images2!.length == 0
+              ? Text('keine Bilder')
+              : Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Positioned(
+                      top: 88,
+                      child: Text(
+                        'Artikelfotos',
                         style: TextStyle(
                           fontFamily: 'Quicksand',
-                          fontSize: 70,
+                          fontSize: 22,
                           color: const Color(0xffffb420),
+                          fontWeight: FontWeight.w500,
                         ),
-                        children: [
-                          TextSpan(
-                            text: '+',
-                            style: TextStyle(
-                              color: const Color(0xffffb420),
-                              fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Positioned(
+                      top: 191,
+                      child: SizedBox(
+                        width: 350.0,
+                        height: 230.0,
+                        child: buildGridView(),
+                      ),
+                    ),
+                    images2!.length == 6
+                        ? Stack(alignment: Alignment.topLeft, children: <
+                            Widget>[
+                            Positioned(
+                              top: 177.0,
+                              left: 98,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(0);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      textHeightBehavior:
-                          TextHeightBehavior(applyHeightToFirstAscent: false),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 225.0, middle: 0.5905),
-            child:
-                // Adobe XD layer: 'Fotos' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 110.0, end: 10.0),
-                  Pin(size: 110.0, start: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 110.0, start: 10.0),
-                  Pin(size: 110.0, end: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 110.0, middle: 0.5),
-                  Pin(size: 110.0, end: 0.5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 110.0, middle: 0.5),
-                  Pin(size: 110.0, start: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 110.0, start: 10.0),
-                  Pin(size: 110.0, start: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffffff),
-                      border: Border.all(
-                          width: 0.2, color: const Color(0xff000000)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 109.0, middle: 0.5),
-            Pin(size: 25.0, middle: 0.2773),
-            child: Text.rich(
-              TextSpan(
-                style: TextStyle(
-                  fontFamily: 'Quicksand',
-                  fontSize: 20,
-                  color: const Color(0xffffffff),
-                ),
-                children: [
-                  TextSpan(
-                    text: 'Artikelfotos',
-                    style: TextStyle(
-                      color: const Color(0xffffb420),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-              textHeightBehavior:
-                  TextHeightBehavior(applyHeightToFirstAscent: false),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 46.0, start: 0.0),
-            Pin(size: 56.0, start: 90.0),
-            child: PageLink(
-              links: [
-                PageLinkInfo(
-                  transition: LinkTransition.Fade,
-                  ease: Curves.easeOut,
-                  duration: 0.3,
-                  pageBuilder: () => XD_AnzeigeaufgebenArtikel1(),
-                ),
-              ],
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(start: 0.0, end: 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(size: 8.0, middle: 0.5),
-                    Pin(size: 21.0, middle: 0.5),
-                    child:
-                        // Adobe XD layer: 'layer1' (group)
-                        Stack(
-                      children: <Widget>[
-                        Pinned.fromPins(
-                          Pin(start: 0.0, end: 0.0),
-                          Pin(start: 0.0, end: 0.0),
-                          child:
-                              // Adobe XD layer: 'path835' (shape)
-                              SvgPicture.string(
-                            _svg_ce8hze,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
+                            Positioned(
+                              top: 177.0,
+                              left: 214,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(1);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 177.0,
+                              left: 330,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(2);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 307.0,
+                              left: 98,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(3);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 307.0,
+                              left: 214,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(4);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 307.0,
+                              left: 330,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  images2!.removeAt(5);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          XD_AnzeigeaufgebenArtikel4(
+                                              images2: images2)));
+                                },
+                                child: Text('x'),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color(0xffffb420),
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(5),
+                                ),
+                              ),
+                            ),
+                          ])
+                        : images2!.length == 5
+                            ? Stack(
+                                alignment: Alignment.topLeft,
+                                children: <Widget>[
+                                    Positioned(
+                                      top: 177.0,
+                                      left: 98,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          images2!.removeAt(0);
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      XD_AnzeigeaufgebenArtikel4(
+                                                          images2: images2)));
+                                        },
+                                        child: Text('x'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xffffb420),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(5),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 177.0,
+                                      left: 214,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          images2!.removeAt(1);
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      XD_AnzeigeaufgebenArtikel4(
+                                                          images2: images2)));
+                                        },
+                                        child: Text('x'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xffffb420),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(5),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 177.0,
+                                      left: 330,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          images2!.removeAt(2);
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      XD_AnzeigeaufgebenArtikel4(
+                                                          images2: images2)));
+                                        },
+                                        child: Text('x'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xffffb420),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(5),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 307.0,
+                                      left: 98,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          images2!.removeAt(3);
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      XD_AnzeigeaufgebenArtikel4(
+                                                          images2: images2)));
+                                        },
+                                        child: Text('x'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xffffb420),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(5),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 307.0,
+                                      left: 214,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          images2!.removeAt(4);
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      XD_AnzeigeaufgebenArtikel4(
+                                                          images2: images2)));
+                                        },
+                                        child: Text('x'),
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xffffb420),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ])
+                            : images2!.length == 4
+                                ? Stack(
+                                    alignment: Alignment.topLeft,
+                                    children: <Widget>[
+                                        Positioned(
+                                          top: 177.0,
+                                          left: 98,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              images2!.removeAt(0);
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          XD_AnzeigeaufgebenArtikel4(
+                                                              images2:
+                                                                  images2)));
+                                            },
+                                            child: Text('x'),
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Color(0xffffb420),
+                                              shape: CircleBorder(),
+                                              padding: EdgeInsets.all(5),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 177.0,
+                                          left: 214,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              images2!.removeAt(1);
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          XD_AnzeigeaufgebenArtikel4(
+                                                              images2:
+                                                                  images2)));
+                                            },
+                                            child: Text('x'),
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Color(0xffffb420),
+                                              shape: CircleBorder(),
+                                              padding: EdgeInsets.all(5),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 177.0,
+                                          left: 330,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              images2!.removeAt(2);
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          XD_AnzeigeaufgebenArtikel4(
+                                                              images2:
+                                                                  images2)));
+                                            },
+                                            child: Text('x'),
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Color(0xffffb420),
+                                              shape: CircleBorder(),
+                                              padding: EdgeInsets.all(5),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 307.0,
+                                          left: 98,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              images2!.removeAt(3);
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          XD_AnzeigeaufgebenArtikel4(
+                                                              images2:
+                                                                  images2)));
+                                            },
+                                            child: Text('x'),
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Color(0xffffb420),
+                                              shape: CircleBorder(),
+                                              padding: EdgeInsets.all(5),
+                                            ),
+                                          ),
+                                        ),
+                                      ])
+                                : images2!.length == 3
+                                    ? Stack(
+                                        alignment: Alignment.topLeft,
+                                        children: <Widget>[
+                                            Positioned(
+                                              top: 177.0,
+                                              left: 98,
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  images2!.removeAt(0);
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              XD_AnzeigeaufgebenArtikel4(
+                                                                  images2:
+                                                                      images2)));
+                                                },
+                                                child: Text('x'),
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Color(0xffffb420),
+                                                  shape: CircleBorder(),
+                                                  padding: EdgeInsets.all(5),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 177.0,
+                                              left: 214,
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  images2!.removeAt(1);
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              XD_AnzeigeaufgebenArtikel4(
+                                                                  images2:
+                                                                      images2)));
+                                                },
+                                                child: Text('x'),
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Color(0xffffb420),
+                                                  shape: CircleBorder(),
+                                                  padding: EdgeInsets.all(5),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 177.0,
+                                              left: 330,
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  images2!.removeAt(2);
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              XD_AnzeigeaufgebenArtikel4(
+                                                                  images2:
+                                                                      images2)));
+                                                },
+                                                child: Text('x'),
+                                                style: ElevatedButton.styleFrom(
+                                                  primary: Color(0xffffb420),
+                                                  shape: CircleBorder(),
+                                                  padding: EdgeInsets.all(5),
+                                                ),
+                                              ),
+                                            ),
+                                          ])
+                                    : images2!.length == 2
+                                        ? Stack(
+                                            alignment: Alignment.topLeft,
+                                            children: <Widget>[
+                                                Positioned(
+                                                  top: 177.0,
+                                                  left: 98,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      images2!.removeAt(0);
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  XD_AnzeigeaufgebenArtikel4(
+                                                                      images2:
+                                                                          images2)));
+                                                    },
+                                                    child: Text('x'),
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary:
+                                                          Color(0xffffb420),
+                                                      shape: CircleBorder(),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  top: 177.0,
+                                                  left: 214,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      images2!.removeAt(1);
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  XD_AnzeigeaufgebenArtikel4(
+                                                                      images2:
+                                                                          images2)));
+                                                    },
+                                                    child: Text('x'),
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary:
+                                                          Color(0xffffb420),
+                                                      shape: CircleBorder(),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ])
+                                        : Stack(
+                                            alignment: Alignment.topLeft,
+                                            children: <Widget>[
+                                                Positioned(
+                                                  top: 177.0,
+                                                  left: 98,
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      images2!.removeAt(0);
+                                                      Navigator.of(context).push(
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  XD_AnzeigeaufgebenArtikel1()));
+                                                    },
+                                                    child: Text('x'),
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary:
+                                                          Color(0xffffb420),
+                                                      shape: CircleBorder(),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ]),
+                    Positioned(
+                      top: 477.0,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => XD_Anzeigeaufgeben10()));
+                          //Bestätigen Action
+                        },
+                        child: Text('Bestätigen'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(350, 45),
+                          primary: Color(0xffffb420),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          XD_TopKomponente(),
+                    Positioned(
+                      top: 537.0,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  XD_AnzeigeaufgebenArtikel1()));
+                          //Bestätigen Action
+                        },
+                        child: Text('Abbrechen'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(350, 45),
+                          primary: Color(0xffffb420),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
         ],
       ),
     );

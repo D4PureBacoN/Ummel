@@ -1,9 +1,10 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
+import 'package:app_ummel/XD_Profil2.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
-import './XD_Profil2.dart';
-import './XD_TopKomponente.dart';
+import 'XD_Favoriten.dart';
+import 'XD_Home.dart';
+import 'XD_MeinProfil.dart';
 
 class XD_Profil1 extends StatelessWidget {
   XD_Profil1({
@@ -13,83 +14,123 @@ class XD_Profil1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
+          ),
+        ],
+      ),
       body: Stack(
+        alignment: Alignment.topLeft,
         children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, middle: 0.2328),
-            child: PageLink(
-              links: [
-                PageLinkInfo(
-                  transition: LinkTransition.Fade,
-                  ease: Curves.easeOut,
-                  duration: 0.3,
-                  pageBuilder: () => XD_Profil2(),
-                ),
+          Positioned(
+            top: 0.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_Profil2()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      'Account - Einstellungen',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon:
+                        Icon(Icons.person, color: Color(0xffffffff), size: 35)),
               ],
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0x1affffff),
-                ),
-              ),
             ),
           ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, middle: 0.3501),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0x1affffff),
-              ),
+          Positioned(
+            top: 70.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      'Benachrichtigungen',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon:
+                        Icon(Icons.person, color: Color(0xffffffff), size: 35)),
+              ],
             ),
           ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 70.0, middle: 0.4673),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0x1affffff),
-              ),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 172.0, middle: 0.3695),
-            Pin(size: 20.0, middle: 0.2535),
-            child: Text(
-              'Account - Einstellungen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 151.0, middle: 0.3348),
-            Pin(size: 20.0, middle: 0.3617),
-            child: Text(
-              'Benachrichtigungen ',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 98.0, middle: 0.2708),
-            Pin(size: 20.0, middle: 0.4699),
-            child: Text(
-              'Privatsphäre ',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 16,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
+          Positioned(
+            top: 140.0,
+            child: Stack(
+              children: <Widget>[
+                ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_MeinProfil()));
+                      //Bestätigen Action
+                    },
+                    label: Text(
+                      'Privatsphäre',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      fixedSize: const Size(500, 70),
+                      primary: Color(0xffffffff),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0)),
+                    ),
+                    icon:
+                        Icon(Icons.person, color: Color(0xffffffff), size: 35)),
+              ],
             ),
           ),
         ],

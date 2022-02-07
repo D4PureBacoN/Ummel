@@ -2,425 +2,140 @@ import 'package:adobe_xd/page_link.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:app_ummel/ummel_icons.dart';
+import 'package:app_ummel/XD_Home.dart';
+import 'package:app_ummel/XD_Favoriten.dart';
 
 import './XD_Anzeigeanschauen.dart';
 import './XD_Chat11.dart';
 import './XD_TopKomponente.dart';
 
-class XD_Chat1 extends StatelessWidget {
-  XD_Chat1({
-    Key? key,
-  }) : super(key: key);
+class XD_Chat1 extends StatefulWidget {
   @override
+  _XDChat1 createState() =>
+      new _XDChat1();
+}
+
+class _XDChat1
+    extends State<XD_Chat1> {
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xffffffff),
-      body: Stack(
-        children: <Widget>[
-          XD_TopKomponente(),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 49.0, end: 56.0),
-            child:
-                // Adobe XD layer: 'Schreiben' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xffffffff),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 309.0, end: 8.0),
-                  Pin(start: 7.0, end: 6.0),
-                  child:
-                      // Adobe XD layer: 'Tippfeld' (shape)
-                      Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0x4dffffff),
-                      border: Border.all(
-                          width: 0.5, color: const Color(0x4d000000)),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 109.0, middle: 0.2895),
-                  Pin(size: 18.0, middle: 0.5161),
-                  child: Text(
-                    'Schreibe etwas ...',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 14,
-                      color: const Color(0x73000000),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Transform.translate(
-                  offset: Offset(9.0, 5.0),
-                  child: SizedBox(
-                    width: 38.0,
-                    height: 38.0,
-                    child:
-                        // Adobe XD layer: 'elektronik' (group)
-                        Stack(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 38.0,
-                          height: 38.0,
-                          child:
-                              // Adobe XD layer: 'layer1' (group)
-                              Stack(
-                            children: <Widget>[
-                              SizedBox(
-                                width: 38.0,
-                                height: 38.0,
-                                child: SvgPicture.string(
-                                  _svg_6kbc4f,
-                                  allowDrawingOutsideViewBox: true,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Transform.translate(
-                          offset: Offset(8.1, 9.3),
-                          child: SizedBox(
-                            width: 22.0,
-                            height: 17.0,
-                            child:
-                                // Adobe XD layer: 'layer3' (group)
-                                Stack(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 22.0,
-                                  height: 17.0,
-                                  child:
-                                      // Adobe XD layer: 'g897' (group)
-                                      Stack(
-                                    children: <Widget>[
-                                      SizedBox(
-                                        width: 22.0,
-                                        height: 17.0,
-                                        child: SvgPicture.string(
-                                          _svg_nwsuo9,
-                                          allowDrawingOutsideViewBox: true,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 52.0, start: 6.0),
-                  Pin(start: 1.0, end: 0.0),
-                  child: PageLink(
-                    links: [
-                      PageLinkInfo(
-                        transition: LinkTransition.Fade,
-                        ease: Curves.easeOut,
-                        duration: 0.3,
-                        pageBuilder: () => XD_Chat11(),
-                      ),
-                    ],
-                    child: SvgPicture.string(
-                      _svg_8uqvlt,
-                      allowDrawingOutsideViewBox: true,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 40.0, start: 8.0),
-                  Pin(start: 4.0, end: 5.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                      color: const Color(0x00ffffff),
-                      border: Border.all(
-                          width: 1.0, color: const Color(0xffffc857)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 55.0, middle: 0.5156),
-            Pin(size: 111.0, middle: 0.2734),
-            child:
-                // Adobe XD layer: 'Datum' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(size: 15.0, end: 0.0),
-                  child: Text(
-                    '01.06.2021',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 12,
-                      color: const Color(0xff737373),
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(size: 15.0, start: 0.0),
-                  child: Text(
-                    '31.05.2021',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 12,
-                      color: const Color(0xff737373),
-                      fontWeight: FontWeight.w500,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 222.0, end: 44.0),
-            Pin(size: 173.0, middle: 0.4271),
-            child:
-                // Adobe XD layer: 'Zeit' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 22.0, end: 0.0),
-                  Pin(size: 13.0, start: 0.0),
-                  child: Text(
-                    '18:46',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 10,
-                      color: const Color(0x80737373),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 24.0, start: 0.0),
-                  Pin(size: 13.0, middle: 0.6313),
-                  child: Text(
-                    '09:23',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 10,
-                      color: const Color(0x80737373),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 25.0, middle: 0.6853),
-                  Pin(size: 13.0, end: 0.0),
-                  child: Text(
-                    '09:25',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 10,
-                      color: const Color(0x80737373),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 8.0, end: 8.0),
-            Pin(size: 213.0, middle: 0.3855),
-            child:
-                // Adobe XD layer: 'Nachrichten' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 292.0, start: 0.0),
-                  Pin(size: 52.0, start: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0x66ffffff),
-                      border: Border.all(
-                          width: 0.5, color: const Color(0x66707070)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x10000000),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 273.0, end: 0.0),
-                  Pin(size: 58.0, middle: 0.6194),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0xffffc857),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x29000000),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 223.0, start: 0.0),
-                  Pin(size: 41.0, end: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: const Color(0x66ffffff),
-                      border: Border.all(
-                          width: 0.5, color: const Color(0x66707070)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0x10000000),
-                          offset: Offset(0, 3),
-                          blurRadius: 6,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 266.0, start: 12.0),
-                  Pin(size: 36.0, start: 8.0),
-                  child: Text(
-                    'Hallo ich interessiere mich für das schöne\nblaue Shirt.',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 14,
-                      color: const Color(0xff000000),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 250.0, end: 9.0),
-                  Pin(size: 36.0, middle: 0.6102),
-                  child: Text(
-                    'Ja klasse, du kannst es gerne abholen \nkommen.',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 14,
-                      color: const Color(0xffffffff),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 204.0, start: 8.0),
-                  Pin(size: 18.0, end: 11.0),
-                  child: Text(
-                    'Jawohl brudi, bis in 10 min, Bild?',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 14,
-                      color: const Color(0xff000000),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(start: 0.0, end: 0.0),
-            Pin(size: 58.0, start: 90.0),
-            child:
-                // Adobe XD layer: 'Kontakt' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: PageLink(
-                    links: [
-                      PageLinkInfo(
-                        transition: LinkTransition.Fade,
-                        ease: Curves.easeOut,
-                        duration: 0.3,
-                        pageBuilder: () => XD_Anzeigeanschauen(),
-                      ),
-                    ],
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 45.0, middle: 0.3815),
-                  Pin(start: 8.6, end: 4.4),
-                  child: Transform.rotate(
-                    angle: -0.0175,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                        color: const Color(0x66ffffff),
-                        border: Border.all(
-                            width: 1.0, color: const Color(0x66707070)),
-                      ),
-                    ),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 67.0, middle: 0.5925),
-                  Pin(size: 18.0, middle: 0.5528),
-                  child: Text(
-                    'Angela M. ',
-                    style: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 14,
-                      color: const Color(0xff000000),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 24.0, middle: 0.1681),
-            Pin(size: 13.0, middle: 0.4908),
-            child: Text(
-              '09:23',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 10,
-                color: const Color(0x80737373),
-              ),
-              textAlign: TextAlign.left,
-            ),
+      appBar: AppBar(
+        title: IconButton(
+          icon: Image.asset("images/UmmelLogo.png"),
+          iconSize: 50,
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => XD_Home()));
+            //Bestätigen Action
+          },
+        ),
+        backgroundColor: Color(0xffffb420),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(ummel_icons.favblume_leer),
+            iconSize: 35,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              //Bestätigen Action
+            },
           ),
         ],
+      ),
+
+      body: new InkWell(
+        splashColor: Colors.transparent,
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+
+        child: SingleChildScrollView(
+          child: Container(
+            child: Row(
+              children: <Widget>[
+
+                Container(
+                    width: 10.0
+                ),
+
+                Container(
+                  height:1230.0,
+                  child:SizedBox(
+                    child: Ink(
+                      width:40.0,
+                      height:40.0,
+                      decoration: const ShapeDecoration(
+                        color: Color(0xffffb420),
+                        shape: CircleBorder(),
+                      ),
+                      child: IconButton(
+                          icon: const Icon(Icons.camera_alt_outlined),
+                          color: Colors.white,
+                          onPressed:() {}
+                      ),
+                    ),
+                  ),
+                ),
+
+                Container(
+                    width: 10.0
+                ),
+
+                Container(
+                  child:SizedBox(
+                    height:40.0,
+                    width: 270,
+                    child: Stack(children:<Widget> [
+                      TextFormField(
+                        cursorColor: Color(0xffffb420),
+                        decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            labelText: "Schreibe etwas",
+                            labelStyle: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 20,
+                              color: const Color(0x80ffc857),
+                              fontWeight: FontWeight.w500,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black45),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide: BorderSide(color: Colors.black38),
+                            )),
+                      ),
+
+                    ],
+                    ),
+
+                  ),
+                ),
+
+                Container(
+                    width: 5.0
+                ),
+
+                Container(
+                  child: IconButton(
+                      alignment: Alignment.bottomLeft,
+                      iconSize: 35.0,
+                      icon: const Icon(Icons.send_rounded),
+                      color: Color(0xffffb420),
+                      onPressed:() {}
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

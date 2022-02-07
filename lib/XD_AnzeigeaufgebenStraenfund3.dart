@@ -1,11 +1,8 @@
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
+import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import './XD_AnzeigeaufgebenStraenfund1.dart';
-import './XD_AnzeigeaufgebenStraenfund4.dart';
-import './XD_TopKomponente.dart';
+import 'XD_Favoriten.dart';
+import 'XD_Home.dart';
 
 class XD_AnzeigeaufgebenStraenfund3 extends StatelessWidget {
   XD_AnzeigeaufgebenStraenfund3({
@@ -14,112 +11,31 @@ class XD_AnzeigeaufgebenStraenfund3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffffff),
-      body: Stack(
-        children: <Widget>[
-          Pinned.fromPins(
-            Pin(start: 18.0, end: 17.0),
-            Pin(size: 45.0, end: 85.0),
-            child:
-                // Adobe XD layer: 'Bestätigen' (group)
-                Stack(
-              children: <Widget>[
-                Pinned.fromPins(
-                  Pin(size: 350.0, middle: 0.4982),
-                  Pin(size: 45.0, middle: 0.52),
-                  child: Stack(
-                    children: <Widget>[
-                      Pinned.fromPins(
-                        Pin(start: 0.0, end: 0.0),
-                        Pin(start: 0.0, end: 0.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    XD_AnzeigeaufgebenStraenfund4()));
-                            //Bestätigen Action
-                          },
-                          child: Text('Bestätigen'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xffffb420),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        backgroundColor: const Color(0xffffffff),
+        appBar: AppBar(
+          title: IconButton(
+            icon: Image.asset("images/UmmelLogo.png"),
+            iconSize: 50,
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => XD_Home()));
+              //Bestätigen Action
+            },
           ),
-          Pinned.fromPins(
-            Pin(size: 196.0, middle: 0.5028),
-            Pin(size: 38.0, middle: 0.4404),
-            child: Text(
-              'Galerie öffnen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 30,
-                color: const Color(0xffffb420),
-              ),
-              textAlign: TextAlign.left,
+          backgroundColor: Color(0xffffb420),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(ummel_icons.favblume_leer),
+              iconSize: 35,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => XD_Favoriten()));
+                //Bestätigen Action
+              },
             ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 46.0, start: 0.0),
-            Pin(size: 56.0, start: 90.0),
-            child: PageLink(
-              links: [
-                PageLinkInfo(
-                  transition: LinkTransition.Fade,
-                  ease: Curves.easeOut,
-                  duration: 0.3,
-                  pageBuilder: () => XD_AnzeigeaufgebenStraenfund1(),
-                ),
-              ],
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(start: 0.0, end: 0.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(size: 8.0, middle: 0.5),
-                    Pin(size: 21.0, middle: 0.5),
-                    child:
-                        // Adobe XD layer: 'layer1' (group)
-                        Stack(
-                      children: <Widget>[
-                        Pinned.fromPins(
-                          Pin(start: 0.0, end: 0.0),
-                          Pin(start: 0.0, end: 0.0),
-                          child:
-                              // Adobe XD layer: 'path835' (shape)
-                              SvgPicture.string(
-                            _svg_ce8hze,
-                            allowDrawingOutsideViewBox: true,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          // Adobe XD layer: 'Top - Komponente' (component)
-          XD_TopKomponente(),
-        ],
-      ),
-    );
+          ],
+        ),
+        body: Container());
   }
 }
 

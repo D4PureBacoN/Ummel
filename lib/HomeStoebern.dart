@@ -8,7 +8,7 @@ class HomeStoebern extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 12,
+      length: 13,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -19,6 +19,9 @@ class HomeStoebern extends StatelessWidget {
             labelColor: Color(0xffffb420),
             isScrollable: true,
             tabs: [
+              Tab(
+                  text: 'Kein Filter',
+                  icon: Icon(Icons.cancel_rounded, size: 45)),
               Tab(
                   text: 'Haus & Garten',
                   icon: Image.asset('images/hausgarten.png',
@@ -70,6 +73,7 @@ class HomeStoebern extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
+            Center(child: ProductGrid()),
             Center(child: ProductGrid()),
             Center(child: ProductGrid()),
             Center(child: ProductGrid()),

@@ -183,12 +183,12 @@ class XD_Anzeigeanschauen1 extends StatelessWidget {
                           // Adobe XD layer: 'Blume' (component)
                           PageLink(
                         links: [
-                          PageLinkInfo(
-                            transition: LinkTransition.Fade,
-                            ease: Curves.easeOut,
-                            duration: 0.3,
-                            pageBuilder: () => XD_Anzeigeanschauen(),
-                          ),
+                         // PageLinkInfo(
+                          //  transition: LinkTransition.Fade,
+                         //   ease: Curves.easeOut,
+                         //   duration: 0.3,
+                          //  pageBuilder: () => XD_Anzeigeanschauen(),
+                         // ),
                         ],
                         child: XD_Blume(),
                       ),

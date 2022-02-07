@@ -2,6 +2,7 @@ import 'package:app_ummel/Paragraph.dart';
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/XD_MeinProfil.dart';
+import 'package:app_ummel/XD_Profil1.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -77,7 +78,7 @@ class XD_Profil extends StatelessWidget {
                 ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_MeinProfil()));
+                          builder: (context) => XD_Profil1()));
                       //Bestätigen Action
                     },
                     label: Text(
@@ -256,7 +257,7 @@ class XD_Profil extends StatelessWidget {
                       //Bestätigen Action
                     },
                     label: Text(
-                      '    Kontaktiere uns',
+                      '    Freunde einladen',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontFamily: 'Quicksand',

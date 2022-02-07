@@ -1,4 +1,5 @@
 import 'package:app_ummel/HomeStoebern.dart';
+import 'package:app_ummel/Street.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class XD_Home extends StatelessWidget {
           ),
           body: TabBarView(children: [
             Center(child: HomeStoebern()),
-            Center(child: Text('Straßenfunde')),
+            Center(child: Street()),
           ]),
         ),
       ),

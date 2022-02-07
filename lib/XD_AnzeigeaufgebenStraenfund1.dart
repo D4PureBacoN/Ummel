@@ -1,11 +1,13 @@
 import 'dart:io';
 
-import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
+import 'package:app_ummel/XD_AnzeigeaufgebenStraenfund4.dart';
+import 'package:app_ummel/XD_AnzeigeaufgebenStraenfund5.dart';
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class XD_AnzeigeaufgebenStraenfund1 extends StatefulWidget {
@@ -16,37 +18,24 @@ class XD_AnzeigeaufgebenStraenfund1 extends StatefulWidget {
 
 class _XDAnzeigeaufgebenStaenfund1
     extends State<XD_AnzeigeaufgebenStraenfund1> {
-  List<Asset> images = <Asset>[];
-  File? _image;
-
+  static List<Asset> images = <Asset>[];
+  static File? camimage;
+  final formatter = intl.NumberFormat.decimalPattern();
+  int i = 2;
   @override
   void initState() {
     super.initState();
   }
 
-  Future _getFromCamera() async {
-    var image = await ImagePicker().pickImage(
-      source: ImageSource.camera,
-      maxWidth: 1920,
-      maxHeight: 1080,
-    );
-    setState(() {
-      _image = File(image!.path);
-    });
-  }
-
-  Widget buildGridView() {
-    return GridView.count(
-      crossAxisCount: 3,
-      children: List.generate(images.length, (index) {
-        Asset asset = images[index];
-        return AssetThumb(
-          asset: asset,
-          width: 300,
-          height: 300,
-        );
-      }),
-    );
+  getFromCamera() async {
+    PickedFile? pickedFile =
+        await ImagePicker().getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setState(() {
+        camimage = File(pickedFile.path);
+      });
+    }
+    i = 3;
   }
 
   Future<void> loadAssets() async {
@@ -56,11 +45,12 @@ class _XDAnzeigeaufgebenStaenfund1
     try {
       resultList = await MultiImagePicker.pickImages(
         maxImages: 6,
-        enableCamera: true,
+        enableCamera: false,
         selectedAssets: images,
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
           actionBarColor: "#ffb420",
+          statusBarColor: "#ffb420",
           actionBarTitle: "Fotos hinzufügen",
           allViewTitle: "Alle Bilder",
           useDetailsView: false,
@@ -77,6 +67,13 @@ class _XDAnzeigeaufgebenStaenfund1
       images = resultList;
       // _error = error;
     });
+    if (images!.length != 0)
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                XD_AnzeigeaufgebenStraenfund4(images: images)),
+      );
   }
 
   Future<void> pickImages() async {
@@ -97,33 +94,31 @@ class _XDAnzeigeaufgebenStaenfund1
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffffffff),
-      appBar: AppBar(
-        title: IconButton(
-          icon: Image.asset("images/UmmelLogo.png"),
-          iconSize: 50,
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => XD_Home()));
-            //Bestätigen Action
-          },
-        ),
-        backgroundColor: Color(0xffffb420),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(ummel_icons.favblume_leer),
-            iconSize: 35,
+        backgroundColor: const Color(0xffffffff),
+        appBar: AppBar(
+          title: IconButton(
+            icon: Image.asset("images/UmmelLogo.png"),
+            iconSize: 50,
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => XD_Favoriten()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => XD_Home()));
               //Bestätigen Action
             },
           ),
-        ],
-      ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
+          backgroundColor: Color(0xffffb420),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(ummel_icons.favblume_leer),
+              iconSize: 35,
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => XD_Favoriten()));
+                //Bestätigen Action
+              },
+            ),
+          ],
+        ),
+        body: Stack(alignment: Alignment.center, children: <Widget>[
           /* Pinned.fromPins(
             Pin(size: 300.0, start: 50.0),
             Pin(size: 400.0, start: 320.0),
@@ -131,78 +126,123 @@ class _XDAnzeigeaufgebenStaenfund1
               child: buildGridView(),
             ),
           ), */
-          Positioned(
-            top: 108.0,
-            child: Text(
-              'Fotos hochladen',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 22,
-                color: const Color(0xffffb420),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 138.0,
-            child: Text(
-              'Füge bis zu 6 Fotos hinzu',
-              style: TextStyle(
-                fontFamily: 'Quicksand',
-                fontSize: 14,
-                color: const Color(0xff000000),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 316.0,
-            child: ElevatedButton.icon(
-              onPressed: loadAssets,
-              label: Text('Galerie'),
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(350, 45),
-                primary: Color(0xffffb420),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-              ),
-              icon: const Icon(Icons.camera_alt_outlined),
-            ),
-          ),
-          Positioned(
-            top: 241.0,
-            child: ElevatedButton.icon(
-              onPressed: _getFromCamera,
-              label: Text('Kamera'),
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(350, 45),
-                primary: Color(0xffffb420),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-              ),
-              icon: const Icon(Icons.camera_alt_outlined),
-            ),
-          ),
-          Positioned(
-            top: 537.0,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => XD_Anzeigeaufgeben10()));
-                //Bestätigen Action
-              },
-              child: Text('Bestätigen'),
-              style: ElevatedButton.styleFrom(
-                fixedSize: const Size(350, 45),
-                primary: Color(0xffffb420),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+          i == 2
+              ? Stack(alignment: Alignment.center, children: <Widget>[
+                  Positioned(
+                    top: 108.0,
+                    child: Text(
+                      'Fotos hochladen',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 22,
+                        color: const Color(0xffffb420),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 138.0,
+                    child: Text(
+                      'Füge bis zu 6 Fotos hinzu',
+                      style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontSize: 14,
+                        color: const Color(0xff000000),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 316.0,
+                    child: ElevatedButton.icon(
+                      onPressed: loadAssets,
+                      label: Text('Galerie'),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(350, 45),
+                        primary: Color(0xffffb420),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                      ),
+                      icon: const Icon(Icons.photo_outlined),
+                    ),
+                  ),
+                  Positioned(
+                    top: 241.0,
+                    child: ElevatedButton.icon(
+                      onPressed: getFromCamera,
+                      label: Text('Kamera'),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(350, 45),
+                        primary: Color(0xffffb420),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                      ),
+                      icon: const Icon(Icons.camera_alt_outlined),
+                    ),
+                  ),
+                ])
+              : Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Positioned(
+                      top: 40,
+                      child: Text(
+                        'Artikelfoto',
+                        style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontSize: 22,
+                          color: const Color(0xffffb420),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                        top: 70,
+                        child: Image.file(
+                          File(camimage!.path),
+                          width: 216,
+                          height: 384,
+                        )),
+                    Positioned(
+                      top: 477.0,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  XD_AnzeigeaufgebenStraenfund5()));
+                          //Bestätigen Action
+                        },
+                        child: Text('Bestätigen'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(350, 45),
+                          primary: Color(0xffffb420),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 537.0,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          i = 2;
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  XD_AnzeigeaufgebenStraenfund1()));
+                          //Bestätigen Action
+                        },
+                        child: Text('Abbrechen'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(350, 45),
+                          primary: Color(0xffffb420),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+        ]));
   }
 }
 
