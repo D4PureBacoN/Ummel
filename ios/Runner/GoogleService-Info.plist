@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>205019151693-bnllo2gbus2gq74p9d0k40se6u4adfc9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.205019151693-bnllo2gbus2gq74p9d0k40se6u4adfc9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBlxjmMOJN_ErRrrmdpPLJ7yqLiK1imVJY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>205019151693</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ummel.app</string>
+	<key>PROJECT_ID</key>
+	<string>ummel-420</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ummel-420.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:205019151693:ios:25975b1015758575144b04</string>
+</dict>
+</plist>

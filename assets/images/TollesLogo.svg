@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="412.68164"
+   height="491.3382"
+   viewBox="0 0 109.18869 129.9999"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="TollesLogo.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.0347451"
+     inkscape:cx="115.48738"
+     inkscape:cy="249.81999"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <defs
+     id="defs2" />
+  <g
+     id="layer1"
+     transform="translate(618.90479,-226.50293)" />
+  <g
+     id="layer5"
+     transform="translate(618.90479,-226.50293)" />
+  <g
+     id="layer6"
+     transform="translate(618.90479,-226.50293)" />
+  <g
+     id="layer7"
+     transform="translate(618.90479,-226.50293)" />
+  <g
+     id="layer8"
+     transform="translate(618.90479,-226.50293)"
+     style="fill:#ffffff;fill-opacity:1">
+    <path
+       id="path1537"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.359314;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       transform="matrix(0.26458333,0,0,0.26458333,-618.90479,226.50293)"
+       d="M 206.33203,0 A 207.87402,226.77165 0 0 0 9.3652344,154.52539 283.46457,226.77165 0 0 1 206.33203,90.707031 283.46457,226.77165 0 0 1 403.34961,154.44922 207.87402,226.77165 0 0 0 206.33203,0 Z m 0,181.41602 C 128.18326,181.46202 53.524989,207.31604 0,252.86914 c 0,0 1.9018969,17.78914 6.4707031,35.92774 C 10.422199,304.48447 16.814585,320.15197 20.3125,328.19727 71.893072,292.29137 137.95818,272.5104 206.33203,272.5 c 68.37411,0 134.44338,19.77433 186.03125,55.67383 6.34083,-13.8726 11.23307,-28.07611 14.50977,-42.00391 4.13549,-17.5779 5.80859,-33.44336 5.80859,-33.44336 -53.55984,-45.504 -128.22149,-71.30554 -206.34961,-71.31054 z m 1.53125,180.91796 c -50.08778,0.01 -99.27847,10.63393 -142.564452,30.79493 0,0 26.918361,22.42617 63.470702,39.95117 12.38142,5.9363 25.87244,11.29307 39.79297,15.04297 l -0.0254,0.0117 37.79492,43.20312 37.79688,-43.22656 -0.0234,-0.01 c 55.46823,-15.0091 104.23633,-55.95508 104.23633,-55.95508 -42.79188,-19.5353 -91.20951,-29.8105 -140.47852,-29.8125 z" />
+  </g>
+</svg>
