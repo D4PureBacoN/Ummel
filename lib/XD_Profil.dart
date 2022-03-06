@@ -1,10 +1,15 @@
 import 'package:app_ummel/Paragraph.dart';
+import 'package:app_ummel/XD_FAQ.dart';
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/XD_MeinProfil.dart';
 import 'package:app_ummel/XD_Profil1.dart';
+import 'package:app_ummel/XD_Suchort.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
+
+import 'XD_Chat1.dart';
+import 'XD_Rechtliches.dart';
 
 class XD_Profil extends StatelessWidget {
   XD_Profil({
@@ -67,7 +72,7 @@ class XD_Profil extends StatelessWidget {
                           borderRadius: BorderRadius.circular(0.0)),
                     ),
                     icon:
-                        Icon(Icons.person, color: Color(0xffffb420), size: 35)),
+                    Icon(Icons.person, color: Color(0xffffb420), size: 35)),
               ],
             ),
           ),
@@ -113,7 +118,7 @@ class XD_Profil extends StatelessWidget {
                 ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_MeinProfil()));
+                          builder: (context) => XD_Suchort()));
                       //Bestätigen Action
                     },
                     label: Text(
@@ -148,7 +153,7 @@ class XD_Profil extends StatelessWidget {
                 ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_MeinProfil()));
+                          builder: (context) => XD_FAQ()));
                       //Bestätigen Action
                     },
                     label: Text(
@@ -183,7 +188,7 @@ class XD_Profil extends StatelessWidget {
                 ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_MeinProfil()));
+                          builder: (context) => XD_Chat1()));
                       //Bestätigen Action
                     },
                     label: Text(
@@ -218,7 +223,7 @@ class XD_Profil extends StatelessWidget {
                 ElevatedButton.icon(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => XD_MeinProfil()));
+                          builder: (context) => XD_Rechtliches()));
                       //Bestätigen Action
                     },
                     label: Text(

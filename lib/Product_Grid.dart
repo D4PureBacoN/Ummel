@@ -58,13 +58,13 @@ class _ProductGridState extends State<ProductGrid> {
                       await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeanschauen(data: data, index: index,)));
+                              builder: (context) => XD_Anzeigeanschauen(data: data, productindex: index, storage: storage)));
                     },
                     child: Column(
                       children: [
-                        //##############
+                        //################
                         FutureBuilder(
-                            future: storage.downloadURL('${data.docs[index]['images']}'),
+                            future: storage.downloadURL('${data.docs[index]['image1']}'),
                             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                               if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                                 return Container(

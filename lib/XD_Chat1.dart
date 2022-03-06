@@ -1,6 +1,9 @@
 import 'package:adobe_xd/page_link.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_bubble/bubble_type.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
+import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_5.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:app_ummel/XD_Home.dart';
@@ -10,16 +13,15 @@ import './XD_Anzeigeanschauen.dart';
 import './XD_Chat11.dart';
 import './XD_TopKomponente.dart';
 
+final myController = TextEditingController();
+
 class XD_Chat1 extends StatefulWidget {
   @override
-  _XDChat1 createState() =>
-      new _XDChat1();
+  _XDChat1 createState() => new _XDChat1();
 }
 
-class _XDChat1
-    extends State<XD_Chat1> {
+class _XDChat1 extends State<XD_Chat1> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -47,28 +49,22 @@ class _XDChat1
           ),
         ],
       ),
-
       body: new InkWell(
         splashColor: Colors.transparent,
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
-
         child: SingleChildScrollView(
           child: Container(
             child: Row(
               children: <Widget>[
-
+                Container(width: 10.0),
                 Container(
-                    width: 10.0
-                ),
-
-                Container(
-                  height:1230.0,
-                  child:SizedBox(
+                  height: 1230.0,
+                  child: SizedBox(
                     child: Ink(
-                      width:40.0,
-                      height:40.0,
+                      width: 40.0,
+                      height: 40.0,
                       decoration: const ShapeDecoration(
                         color: Color(0xffffb420),
                         shape: CircleBorder(),
@@ -76,62 +72,68 @@ class _XDChat1
                       child: IconButton(
                           icon: const Icon(Icons.camera_alt_outlined),
                           color: Colors.white,
-                          onPressed:() {}
-                      ),
+                          onPressed: () {}),
                     ),
                   ),
                 ),
-
+                Container(width: 10.0),
                 Container(
-                    width: 10.0
-                ),
-
-                Container(
-                  child:SizedBox(
-                    height:40.0,
+                  child: SizedBox(
+                    height: 40.0,
                     width: 270,
-                    child: Stack(children:<Widget> [
-                      TextFormField(
-                        cursorColor: Color(0xffffb420),
-                        decoration: InputDecoration(
-                            alignLabelWithHint: true,
-                            labelText: "Schreibe etwas",
-                            labelStyle: TextStyle(
-                              fontFamily: 'Quicksand',
-                              fontSize: 20,
-                              color: const Color(0x80ffc857),
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black45),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              borderSide: BorderSide(color: Colors.black38),
-                            )),
-                      ),
-
-                    ],
+                    child: Stack(
+                      children: <Widget>[
+                        TextFormField(
+                          controller: myController,
+                          cursorColor: Color(0xffffb420),
+                          decoration: InputDecoration(
+                              alignLabelWithHint: true,
+                              labelText: "Schreibe etwas",
+                              labelStyle: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 20,
+                                color: const Color(0x80ffc857),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black45),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                borderSide: BorderSide(color: Colors.black38),
+                              )),
+                        ),
+                      ],
                     ),
-
                   ),
                 ),
-
-                Container(
-                    width: 5.0
-                ),
-
+                Container(width: 5.0),
                 Container(
                   child: IconButton(
                       alignment: Alignment.bottomLeft,
                       iconSize: 35.0,
                       icon: const Icon(Icons.send_rounded),
                       color: Color(0xffffb420),
-                      onPressed:() {}
-                  ),
+                      onPressed: () {
+                        ChatBubble(
+                          clipper:
+                          ChatBubbleClipper5(type: BubbleType.sendBubble),
+                          alignment: Alignment.topRight,
+                          margin: EdgeInsets.only(top: 20),
+                          backGroundColor: Colors.blue,
+                          child: Container(
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width * 0.7,
+                            ),
+                            child: Text(
+                              myController.text,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        );
+                      }),
                 ),
-
               ],
             ),
           ),

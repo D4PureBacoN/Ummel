@@ -1,35 +1,48 @@
+import 'dart:io';
+import 'dart:async';
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'XD_SucheKategorien.dart';
-
-class XD_Anzeigeaufgeben10 extends StatefulWidget {
-  @override
-  _XDAnzeigeaufgeben10 createState() => new _XDAnzeigeaufgeben10();
-}
 
 class FormData {
   String name = "";
   String discription = "";
-  String images = "";
+  String image1 = "";
+  String image2 = "";
   int postal = 0;
   String street = "";
   String user = "";
 }
 
-class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
+
+class XD_Anzeigeaufgeben10 extends StatefulWidget {
+  List<Asset>? images2 = <Asset>[];
+
+  XD_Anzeigeaufgeben10({required this.images2});
+
+  @override
+  _XD_Anzeigeaufgeben10 createState() => _XD_Anzeigeaufgeben10();
+}
+
+class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
+
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   AutovalidateMode _autoValidate = AutovalidateMode.disabled;
 
   FormData _FormData = FormData();
 
-
   String? _validatePostal(String postal) {
-    if(postal.isEmpty) {
+    if (postal.isEmpty) {
       return "Bitte füllen Sie alle Felder aus.";
     }
     final postalExp = RegExp(r'^[0-9]+$');
@@ -41,16 +54,16 @@ class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
   }
 
   String? _validateField(String value) {
-    if(value.isEmpty) {
+    if (value.isEmpty) {
       return "Bitte füllen Sie alle Felder aus.";
     }
     _autoValidate = AutovalidateMode.disabled;
     return null;
   }
 
-
   @override
   Widget build(BuildContext context) {
+    print(widget.images2);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xffffffff),
@@ -199,10 +212,12 @@ class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                           borderSide: BorderSide(color: Colors.black38),
                         ),
                       ),
-                      keyboardType: TextInputType.numberWithOptions(decimal:false),
+                      keyboardType:
+                          TextInputType.numberWithOptions(decimal: false),
                       maxLength: 5,
                       validator: (postal) => _validatePostal(postal!),
-                      onSaved: (postal) => _FormData.postal = int.parse(postal!),
+                      onSaved: (postal) =>
+                          _FormData.postal = int.parse(postal!),
                     ),
                   ),
                   Container(height: 30),
@@ -288,20 +303,24 @@ class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       ),
     );
   }
+
   void _handleUpload() {
     final form = _formKey.currentState;
-    if(form == null) {
+    if (form == null) {
       return null;
     }
-    if(!form.validate()) {
+    if (!form.validate()) {
       _autoValidate = AutovalidateMode.always;
     } else {
       form.save();
       uploadData();
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => XD_Home()));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => XD_Home()));
     }
   }
+
   Future<int> _getProductCount() async {
+
     var counter = FirebaseFirestore.instance.collection('counter');
     var docSnapshot = await counter.doc('products').get();
     if (docSnapshot.exists) {
@@ -310,12 +329,25 @@ class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
     }
     return 0;
   }
+
+  Future _updateProductCount(int count) async {
+    final counter = FirebaseFirestore.instance.collection('counter').doc('products');
+    final counterData = { 'count' : count};
+
+    await counter.set(counterData);
+  }
+
   Future uploadData() async {
+    //just for testpurpose
+    _FormData.user = "testuser";
+    final storage = FirebaseStorage.instance;
     int ProductCount = await _getProductCount();
-    if(ProductCount==0) {
-      return Text("Something went wrong.");
+    if (ProductCount == 0) {
+      return ProductCount+1;
     }
-    final products = FirebaseFirestore.instance.collection('products').doc('$ProductCount');
+    ProductCount+=1;
+    final products =
+        FirebaseFirestore.instance.collection('products').doc('$ProductCount');
     final data = {
       'id': ProductCount,
       'name': _FormData.name,
@@ -323,11 +355,44 @@ class _XDAnzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       'street': _FormData.street,
       'user': _FormData.user,
       'postal': _FormData.postal,
-      'images': _FormData.images,
+      'image1': _FormData.user+"_"+_FormData.name+"1",
+      'image2': "null",
+      'image3': "null",
+      'image4': "null",
+      'image5': "null",
+      'image6': "null",
       'town': "Teststadt",
     };
+
+    String ImageURL;
+
+    var snapshot = await storage
+        .ref()
+        .child('products_img/${_FormData.user+"_"+_FormData.name+"1"}')
+        .putFile(await getImageFileFromAssets(widget.images2!.first));
+
+    var downloadURL = await snapshot.ref.getDownloadURL();
+
+    setState(() {
+      ImageURL = downloadURL;
+    });
+
     await products.set(data);
-    ProductCount=0;
+    await _updateProductCount(ProductCount);
+    ProductCount = 0;
+  }
+
+  Future<File> getImageFileFromAssets(Asset asset) async {
+    final byteData = await asset.getByteData();
+
+    final tempFile =
+        File("${(await getTemporaryDirectory()).path}/${asset.name}");
+    final file = await tempFile.writeAsBytes(
+      byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+    );
+
+    return file;
   }
 }
 

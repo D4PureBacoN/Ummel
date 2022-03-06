@@ -205,7 +205,7 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeaufgeben10()));
+                              builder: (context) => XD_Anzeigeaufgeben10(images2: images2)));
                           //Bestätigen Action
                         },
                         child: Text('Bestätigen'),

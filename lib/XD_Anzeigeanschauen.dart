@@ -1,3 +1,4 @@
+import 'package:app_ummel/Product_Grid.dart';
 import 'package:app_ummel/XD_Chat1.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/XD_Profil.dart';
@@ -7,20 +8,42 @@ import 'package:flutter/material.dart';
 
 import 'XD_Favoriten.dart';
 
+int getImageCount(QuerySnapshot<Object?> data, int index) {
+  if(data.docs[index]['image2']==null) {
+    return 1;
+  }
+  if(data.docs[index]['image3']==null) {
+    return 2;
+  }
+  if(data.docs[index]['image4']==null) {
+    return 3;
+  }
+  if(data.docs[index]['image5']==null) {
+    return 4;
+  }
+  if(data.docs[index]['image6']==null) {
+    return 5;
+  }
+  return 6;
+}
+
 class XD_Anzeigeanschauen extends StatelessWidget {
-  const XD_Anzeigeanschauen({Key? key, required this.data, required this.index})
+  const XD_Anzeigeanschauen(
+      {Key? key, required this.data, required this.productindex, required this.storage})
       : super(key: key);
 
-  final int index;
+  final int productindex;
   final QuerySnapshot<Object?> data;
+  final Storage storage;
 
   //Productname = data.docs[index]['name'];
-  //data.docs[index]['images'];
+  //data.docs[index]['image1'];
   //data.docs[index]['postal'];
   //data.docs[index]['town'];
   //index ist immer gleich, index is im prinzip nur die indexstelle vom Grid und Gleichzeitig vom data.docs
 
   Widget build(BuildContext context) {
+    int imageCount = getImageCount(data, productindex);
     return Scaffold(
         backgroundColor: const Color(0xffffffff),
         appBar: AppBar(
@@ -56,17 +79,45 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                     child: SizedBox(
                         height: 300,
                         width: 300,
-                        child: ListView(
+                        child: ListView.separated(
                           // This next line does the trick.
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[]))),
+                          scrollDirection: Axis.horizontal,
+                          separatorBuilder: (BuildContext context,
+                              int index)  => const Divider(),
+                          itemCount: imageCount,
+                          itemBuilder: (BuildContext context, int index) {
+                            return FutureBuilder(
+                                future: storage.downloadURL(
+                                    '${data.docs[productindex]['image${index+1}']}'),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<String> snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done &&
+                                      snapshot.hasData) {
+                                    return Container(
+                                        width: 300,
+                                        height: 300,
+                                        child: Image.network(
+                                          snapshot.data!,
+                                          fit: BoxFit.cover,
+                                        )
+                                    );
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return CircularProgressIndicator();
+                                  }
+                                  return Container();
+                                });
+                          },
+                        ))),
                 SizedBox(
                   height: 20,
                 ),
                 Align(
                     alignment: Alignment.topCenter,
                     child: Text(
-                      data.docs[index]['name'],
+                      data.docs[productindex]['name'],
                       style: TextStyle(
                         fontFamily: 'Quicksand',
                         fontSize: 22,
@@ -99,7 +150,8 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Container(
                         width: 327,
-                        child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min, children: [
                           Align(
                               alignment: Alignment.topLeft,
                               child: Text(
@@ -118,7 +170,7 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                               alignment: Alignment.topLeft,
                               child: Flexible(
                                   child: Text(
-                                    data.docs[index]['discription'],
+                                    data.docs[productindex]['discription'],
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 7,
                                     style: TextStyle(
@@ -134,7 +186,7 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                           Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                data.docs[index]['postal'].toString(),
+                                data.docs[productindex]['postal'].toString(),
                                 style: TextStyle(
                                   fontFamily: 'Quicksand',
                                   fontSize: 16,
@@ -151,7 +203,7 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  data.docs[index]['user'],
+                                  data.docs[productindex]['user'],
                                   style: TextStyle(
                                     fontFamily: 'Quicksand',
                                     fontSize: 16,
@@ -161,9 +213,10 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                                   textAlign: TextAlign.left,
                                 ),
                               ),
-                              onPressed: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => XD_Profil())),
+                              onPressed: () =>
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => XD_Profil())),
                             ),
                           ),
                           SizedBox(
