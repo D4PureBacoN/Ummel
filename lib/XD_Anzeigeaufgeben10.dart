@@ -25,8 +25,9 @@ class FormData {
 
 class XD_Anzeigeaufgeben10 extends StatefulWidget {
   List<Asset>? images2 = <Asset>[];
+  File? camimage;
 
-  XD_Anzeigeaufgeben10({required this.images2});
+  XD_Anzeigeaufgeben10({required this.images2, required this.camimage});
 
   @override
   _XD_Anzeigeaufgeben10 createState() => _XD_Anzeigeaufgeben10();
@@ -338,8 +339,11 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
   }
 
   Future uploadData() async {
-    //just for testpurpose
+    //just for testpurpose###
     _FormData.user = "testuser";
+    //#######################
+    int i = 1;
+    int images2_len = widget.images2!.length;
     final storage = FirebaseStorage.instance;
     int ProductCount = await _getProductCount();
     if (ProductCount == 0) {
@@ -356,26 +360,40 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       'user': _FormData.user,
       'postal': _FormData.postal,
       'image1': _FormData.user+"_"+_FormData.name+"1",
-      'image2': "null",
-      'image3': "null",
-      'image4': "null",
-      'image5': "null",
-      'image6': "null",
+      'image2': _FormData.user+"_"+_FormData.name+"2",
+      'image3': _FormData.user+"_"+_FormData.name+"3",
+      'image4': _FormData.user+"_"+_FormData.name+"4",
+      'image5': _FormData.user+"_"+_FormData.name+"5",
+      'image6': _FormData.user+"_"+_FormData.name+"6",
       'town': "Teststadt",
     };
 
     String ImageURL;
 
-    var snapshot = await storage
-        .ref()
-        .child('products_img/${_FormData.user+"_"+_FormData.name+"1"}')
-        .putFile(await getImageFileFromAssets(widget.images2!.first));
-
-    var downloadURL = await snapshot.ref.getDownloadURL();
-
-    setState(() {
-      ImageURL = downloadURL;
-    });
+    if(widget.images2!.isEmpty) {
+      var snapshot = await storage
+          .ref()
+          .child('products_img/${_FormData.user+"_"+_FormData.name+"1"}')
+          .putFile(widget.camimage!);
+      var downloadURL = await snapshot.ref.getDownloadURL();
+      setState(() {
+        ImageURL = downloadURL;
+      });
+    } else {
+      while(i <= images2_len) {
+        var snapshot = await storage
+            .ref()
+            .child(
+            'products_img/${_FormData.user + "_" + _FormData.name + i.toString()}')
+            .putFile(await getImageFileFromAssets(widget.images2!.first));
+        var downloadURL = await snapshot.ref.getDownloadURL();
+        setState(() {
+          ImageURL = downloadURL;
+        });
+        i+=1;
+        widget.images2!.removeAt(0);
+      }
+    }
 
     await products.set(data);
     await _updateProductCount(ProductCount);

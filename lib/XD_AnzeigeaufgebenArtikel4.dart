@@ -1,3 +1,5 @@
+
+import 'dart:io';
 import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
 import 'package:app_ummel/XD_AnzeigeaufgebenArtikel1.dart';
 import 'package:app_ummel/ummel_icons.dart';
@@ -9,7 +11,8 @@ import 'XD_Home.dart';
 
 class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
   List<Asset>? images2 = <Asset>[];
-  XD_AnzeigeaufgebenArtikel4({Key? key, @required this.images2})
+  File? camimage;
+  XD_AnzeigeaufgebenArtikel4({Key? key, @required this.images2, @required this.camimage})
       : super(key: key);
 
   @override
@@ -547,7 +550,7 @@ class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeaufgeben10(images2: images2)));
+                              builder: (context) => XD_Anzeigeaufgeben10(images2: images2, camimage: camimage)));
                           //Bestätigen Action
                         },
                         child: Text('Bestätigen'),
