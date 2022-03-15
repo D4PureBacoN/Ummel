@@ -9,19 +9,19 @@ import 'package:flutter/material.dart';
 import 'XD_Favoriten.dart';
 
 int getImageCount(QuerySnapshot<Object?> data, int index) {
-  if(data.docs[index]['image2']==null) {
+  if (data.docs[index]['image2'] == null) {
     return 1;
   }
-  if(data.docs[index]['image3']==null) {
+  if (data.docs[index]['image3'] == null) {
     return 2;
   }
-  if(data.docs[index]['image4']==null) {
+  if (data.docs[index]['image4'] == null) {
     return 3;
   }
-  if(data.docs[index]['image5']==null) {
+  if (data.docs[index]['image5'] == null) {
     return 4;
   }
-  if(data.docs[index]['image6']==null) {
+  if (data.docs[index]['image6'] == null) {
     return 5;
   }
   return 6;
@@ -29,7 +29,10 @@ int getImageCount(QuerySnapshot<Object?> data, int index) {
 
 class XD_Anzeigeanschauen extends StatelessWidget {
   const XD_Anzeigeanschauen(
-      {Key? key, required this.data, required this.productindex, required this.storage})
+      {Key? key,
+      required this.data,
+      required this.productindex,
+      required this.storage})
       : super(key: key);
 
   final int productindex;
@@ -73,157 +76,153 @@ class XD_Anzeigeanschauen extends StatelessWidget {
             Widget>[
           Expanded(
               child:
-              ListView(scrollDirection: Axis.vertical, children: <Widget>[
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: SizedBox(
-                        height: 300,
-                        width: 300,
-                        child: ListView.separated(
-                          // This next line does the trick.
-                          scrollDirection: Axis.horizontal,
-                          separatorBuilder: (BuildContext context,
-                              int index)  => const Divider(),
-                          itemCount: imageCount,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FutureBuilder(
-                                future: storage.downloadURL(
-                                    '${data.docs[productindex]['image${index+1}']}'),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<String> snapshot) {
-                                  if (snapshot.connectionState ==
+                  ListView(scrollDirection: Axis.vertical, children: <Widget>[
+            Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: ListView.separated(
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(),
+                      itemCount: imageCount,
+                      itemBuilder: (BuildContext context, int index) {
+                        return FutureBuilder(
+                            future: storage.downloadURL(
+                                '${data.docs[productindex]['image${index + 1}']}'),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<String> snapshot) {
+                              if (snapshot.connectionState ==
                                       ConnectionState.done &&
-                                      snapshot.hasData) {
-                                    return Container(
-                                        width: 300,
-                                        height: 300,
-                                        child: Image.network(
-                                          snapshot.data!,
-                                          fit: BoxFit.cover,
-                                        )
-                                    );
-                                  }
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return CircularProgressIndicator();
-                                  }
-                                  return Container();
-                                });
-                          },
-                        ))),
-                SizedBox(
-                  height: 20,
-                ),
-                Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      data.docs[productindex]['name'],
-                      style: TextStyle(
-                        fontFamily: 'Quicksand',
-                        fontSize: 22,
-                        color: const Color(0xffffb420),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    )),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => XD_Chat1()));
-                      //Bestätigen Action
-                    },
-                    child: Text('Anfragen'),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(350, 45),
-                      primary: Color(0xffffb420),
-                    ),
+                                  snapshot.hasData) {
+                                return Container(
+                                    width: 300,
+                                    height: 300,
+                                    child: Image.network(
+                                      snapshot.data!,
+                                      fit: BoxFit.cover,
+                                    ));
+                              }
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              }
+                              return Container();
+                            });
+                      },
+                    ))),
+            SizedBox(
+              height: 20,
+            ),
+            Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  data.docs[productindex]['name'],
+                  style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontSize: 22,
+                    color: const Color(0xffffb420),
+                    fontWeight: FontWeight.w500,
                   ),
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => XD_Chat1()));
+                  //Bestätigen Action
+                },
+                child: Text('Anfragen'),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(350, 45),
+                  primary: Color(0xffffb420),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                    alignment: Alignment.center,
-                    child: Container(
-                        width: 327,
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min, children: [
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Beschreibung',
-                                style: TextStyle(
-                                  fontFamily: 'Quicksand',
-                                  fontSize: 16,
-                                  color: const Color(0xffffb420),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Flexible(
-                                  child: Text(
-                                    data.docs[productindex]['discription'],
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 7,
-                                    style: TextStyle(
-                                      fontFamily: 'Quicksand',
-                                      fontSize: 16,
-                                      color: const Color(0xff000000),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ))),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                data.docs[productindex]['postal'].toString(),
-                                style: TextStyle(
-                                  fontFamily: 'Quicksand',
-                                  fontSize: 16,
-                                  color: const Color(0xff737373),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          ButtonTheme(
-                            child: FlatButton(
-                              padding: EdgeInsets.all(0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  data.docs[productindex]['user'],
-                                  style: TextStyle(
-                                    fontFamily: 'Quicksand',
-                                    fontSize: 16,
-                                    color: const Color(0xff000000),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+                alignment: Alignment.center,
+                child: Container(
+                    width: 327,
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Beschreibung',
+                            style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 16,
+                              color: const Color(0xffffb420),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            data.docs[productindex]['discription'],
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 7,
+                            style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 16,
+                              color: const Color(0xff000000),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            data.docs[productindex]['postal'].toString(),
+                            style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 16,
+                              color: const Color(0xff737373),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      ButtonTheme(
+                        child: FlatButton(
+                          padding: EdgeInsets.all(0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              data.docs[productindex]['user'],
+                              style: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 16,
+                                color: const Color(0xff000000),
+                                fontWeight: FontWeight.w500,
                               ),
-                              onPressed: () =>
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => XD_Profil())),
+                              textAlign: TextAlign.left,
                             ),
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                        ])))
-              ]))
+                          onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => XD_Profil())),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                    ])))
+          ]))
         ]));
   }
 }
