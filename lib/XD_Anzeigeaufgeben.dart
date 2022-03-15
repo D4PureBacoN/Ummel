@@ -4,13 +4,13 @@ import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
 import './XD_AnzeigeaufgebenArtikel1.dart';
-import './XD_AnzeigeaufgebenStraenfund1.dart';
 
 class XD_Anzeigeaufgeben extends StatelessWidget {
   XD_Anzeigeaufgeben({
     Key? key,
   }) : super(key: key);
   @override
+  int n = 0;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
@@ -68,8 +68,11 @@ class XD_Anzeigeaufgeben extends StatelessWidget {
             top: 270.0,
             child: ElevatedButton(
               onPressed: () {
+                n = 1;
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => XD_AnzeigeaufgebenArtikel1()));
+                    builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                          n: n,
+                        )));
                 //Bestätigen Action
               },
               child: Text('Artikel'),
@@ -98,8 +101,11 @@ class XD_Anzeigeaufgeben extends StatelessWidget {
             top: 417.0,
             child: ElevatedButton(
               onPressed: () {
+                n = 0;
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => XD_AnzeigeaufgebenStraenfund1()));
+                    builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                          n: n,
+                        )));
                 //Bestätigen Action
               },
               child: Text('Straßenfund'),

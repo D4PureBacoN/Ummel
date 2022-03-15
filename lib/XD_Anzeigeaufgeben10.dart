@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
+
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
 import 'package:app_ummel/ummel_icons.dart';
@@ -22,19 +23,20 @@ class FormData {
   String user = "";
 }
 
-
 class XD_Anzeigeaufgeben10 extends StatefulWidget {
   List<Asset>? images2 = <Asset>[];
   File? camimage;
+  int? n;
 
-  XD_Anzeigeaufgeben10({required this.images2, required this.camimage});
+  XD_Anzeigeaufgeben10(
+      {required this.images2, required this.camimage, required this.n});
 
   @override
   _XD_Anzeigeaufgeben10 createState() => _XD_Anzeigeaufgeben10();
 }
 
 class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
-
+  late int? n = n;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -132,26 +134,27 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      inputFormatters: [
+                        new LengthLimitingTextInputFormatter(30),
+                      ],
                       cursorColor: Color(0xffffb420),
                       decoration: InputDecoration(
-                        labelText: "Titel",
-                        labelStyle: TextStyle(
-                          fontFamily: 'Quicksand',
-                          fontSize: 20,
-                          color: const Color(0x80ffc857),
-                          fontWeight: FontWeight.w500,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Colors.black38),
-                        ),
-                      ),
+                          labelText: "Titel",
+                          labelStyle: TextStyle(
+                            fontFamily: 'Quicksand',
+                            fontSize: 20,
+                            color: const Color(0x80ffc857),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black45),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            borderSide: BorderSide(color: Colors.black38),
+                          )),
                       keyboardType: TextInputType.name,
-                      maxLength: 25,
                       validator: (title) => _validateField(title!),
                       onSaved: (title) {
                         _FormData.name = title!;
@@ -162,6 +165,9 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                   SizedBox(
                     width: 340,
                     child: TextFormField(
+                      inputFormatters: [
+                        new LengthLimitingTextInputFormatter(1000),
+                      ],
                       maxLines: 7,
                       cursorColor: Color(0xffffb420),
                       decoration: InputDecoration(
@@ -183,7 +189,6 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                         ),
                       ),
                       keyboardType: TextInputType.multiline,
-                      maxLength: 100,
                       validator: (discription) => _validateField(discription!),
                       onSaved: (discription) {
                         _FormData.discription = discription!;
@@ -195,6 +200,9 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      inputFormatters: [
+                        new LengthLimitingTextInputFormatter(5),
+                      ],
                       cursorColor: Color(0xffffb420),
                       decoration: InputDecoration(
                         labelText: "Postleitzahl",
@@ -215,7 +223,6 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                       ),
                       keyboardType:
                           TextInputType.numberWithOptions(decimal: false),
-                      maxLength: 5,
                       validator: (postal) => _validatePostal(postal!),
                       onSaved: (postal) =>
                           _FormData.postal = int.parse(postal!),
@@ -226,6 +233,9 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      inputFormatters: [
+                        new LengthLimitingTextInputFormatter(50),
+                      ],
                       cursorColor: Color(0xffffb420),
                       decoration: InputDecoration(
                         labelText: "Straße & Hausnummer (optional)",
@@ -245,7 +255,6 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                         ),
                       ),
                       keyboardType: TextInputType.streetAddress,
-                      maxLength: 50,
                       onSaved: (street) {
                         _FormData.street = street!;
                       },
@@ -321,7 +330,6 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
   }
 
   Future<int> _getProductCount() async {
-
     var counter = FirebaseFirestore.instance.collection('counter');
     var docSnapshot = await counter.doc('products').get();
     if (docSnapshot.exists) {
@@ -332,8 +340,9 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
   }
 
   Future _updateProductCount(int count) async {
-    final counter = FirebaseFirestore.instance.collection('counter').doc('products');
-    final counterData = { 'count' : count};
+    final counter =
+        FirebaseFirestore.instance.collection('counter').doc('products');
+    final counterData = {'count': count};
 
     await counter.set(counterData);
   }
@@ -347,9 +356,9 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
     final storage = FirebaseStorage.instance;
     int ProductCount = await _getProductCount();
     if (ProductCount == 0) {
-      return ProductCount+1;
+      return ProductCount + 1;
     }
-    ProductCount+=1;
+    ProductCount += 1;
     final products =
         FirebaseFirestore.instance.collection('products').doc('$ProductCount');
     final data = {
@@ -359,38 +368,38 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       'street': _FormData.street,
       'user': _FormData.user,
       'postal': _FormData.postal,
-      'image1': _FormData.user+"_"+_FormData.name+"1",
-      'image2': _FormData.user+"_"+_FormData.name+"2",
-      'image3': _FormData.user+"_"+_FormData.name+"3",
-      'image4': _FormData.user+"_"+_FormData.name+"4",
-      'image5': _FormData.user+"_"+_FormData.name+"5",
-      'image6': _FormData.user+"_"+_FormData.name+"6",
+      'image1': _FormData.user + "_" + _FormData.name + "1",
+      'image2': _FormData.user + "_" + _FormData.name + "2",
+      'image3': _FormData.user + "_" + _FormData.name + "3",
+      'image4': _FormData.user + "_" + _FormData.name + "4",
+      'image5': _FormData.user + "_" + _FormData.name + "5",
+      'image6': _FormData.user + "_" + _FormData.name + "6",
       'town': "Teststadt",
     };
 
     String ImageURL;
 
-    if(widget.images2!.isEmpty) {
+    if (widget.images2!.isEmpty) {
       var snapshot = await storage
           .ref()
-          .child('products_img/${_FormData.user+"_"+_FormData.name+"1"}')
+          .child('products_img/${_FormData.user + "_" + _FormData.name + "1"}')
           .putFile(widget.camimage!);
       var downloadURL = await snapshot.ref.getDownloadURL();
       setState(() {
         ImageURL = downloadURL;
       });
     } else {
-      while(i <= images2_len) {
+      while (i <= images2_len) {
         var snapshot = await storage
             .ref()
             .child(
-            'products_img/${_FormData.user + "_" + _FormData.name + i.toString()}')
+                'products_img/${_FormData.user + "_" + _FormData.name + i.toString()}')
             .putFile(await getImageFileFromAssets(widget.images2!.first));
         var downloadURL = await snapshot.ref.getDownloadURL();
         setState(() {
           ImageURL = downloadURL;
         });
-        i+=1;
+        i += 1;
         widget.images2!.removeAt(0);
       }
     }
@@ -413,4 +422,3 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
     return file;
   }
 }
-

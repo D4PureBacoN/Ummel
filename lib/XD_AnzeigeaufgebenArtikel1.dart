@@ -11,6 +11,8 @@ import 'package:intl/intl.dart' as intl;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class XD_AnzeigeaufgebenArtikel1 extends StatefulWidget {
+  int? n;
+  XD_AnzeigeaufgebenArtikel1({required this.n});
   @override
   _XDAnzeigeaufgebenArtikel1 createState() => new _XDAnzeigeaufgebenArtikel1();
 }
@@ -18,6 +20,8 @@ class XD_AnzeigeaufgebenArtikel1 extends StatefulWidget {
 class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
   static List<Asset> images2 = <Asset>[];
   static File? camimage;
+  late int? n = widget.n;
+
   final formatter = intl.NumberFormat.decimalPattern();
   int i = 2;
   @override
@@ -69,7 +73,10 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => XD_AnzeigeaufgebenArtikel4(images2: images2)),
+            builder: (context) => XD_AnzeigeaufgebenArtikel4(
+                  images2: images2,
+                  n: n,
+                )),
       );
   }
 
@@ -205,7 +212,11 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeaufgeben10(images2: images2, camimage: camimage)));
+                              builder: (context) => XD_Anzeigeaufgeben10(
+                                    images2: images2,
+                                    camimage: camimage,
+                                    n: n,
+                                  )));
                           //Bestätigen Action
                         },
                         child: Text('Bestätigen'),
@@ -223,8 +234,9 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
                         onPressed: () {
                           i = 2;
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  XD_AnzeigeaufgebenArtikel1()));
+                              builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                                    n: n,
+                                  )));
                           //Bestätigen Action
                         },
                         child: Text('Abbrechen'),

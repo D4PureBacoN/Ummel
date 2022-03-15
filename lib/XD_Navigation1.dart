@@ -44,23 +44,23 @@ class _NavigationState extends State {
         items: <BottomNavigationBarItem>[
           new BottomNavigationBarItem(
             icon: Icon(ummel_icons.startseite),
-            title: Text('Startseite'),
+            label: ('Startseite'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(ummel_icons.suchen),
-            title: Text('Suchen'),
+            label: ('Suchen'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(ummel_icons.hinzufuegen),
-            title: Text('Anzeigen'),
+            label: ('Anzeigen'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(ummel_icons.nachrichten),
-            title: Text('Nachrichten'),
+            label: ('Nachrichten'),
           ),
           new BottomNavigationBarItem(
             icon: Icon(ummel_icons.profil),
-            title: Text('Profil'),
+            label: ('Profil'),
           ),
         ],
       ),

@@ -1,5 +1,5 @@
-
 import 'dart:io';
+
 import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
 import 'package:app_ummel/XD_AnzeigeaufgebenArtikel1.dart';
 import 'package:app_ummel/ummel_icons.dart';
@@ -12,7 +12,12 @@ import 'XD_Home.dart';
 class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
   List<Asset>? images2 = <Asset>[];
   File? camimage;
-  XD_AnzeigeaufgebenArtikel4({Key? key, @required this.images2, @required this.camimage})
+  late int? n = n;
+  XD_AnzeigeaufgebenArtikel4(
+      {Key? key,
+      @required this.images2,
+      @required this.camimage,
+      @required this.n})
       : super(key: key);
 
   @override
@@ -531,7 +536,9 @@ class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
                                                       Navigator.of(context).push(
                                                           MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  XD_AnzeigeaufgebenArtikel1()));
+                                                                  XD_AnzeigeaufgebenArtikel1(
+                                                                    n: n,
+                                                                  )));
                                                     },
                                                     child: Text('x'),
                                                     style: ElevatedButton
@@ -550,7 +557,11 @@ class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeaufgeben10(images2: images2, camimage: camimage)));
+                              builder: (context) => XD_Anzeigeaufgeben10(
+                                    images2: images2,
+                                    camimage: camimage,
+                                    n: n,
+                                  )));
                           //Bestätigen Action
                         },
                         child: Text('Bestätigen'),
@@ -567,8 +578,9 @@ class XD_AnzeigeaufgebenArtikel4 extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  XD_AnzeigeaufgebenArtikel1()));
+                              builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                                    n: n,
+                                  )));
                           //Bestätigen Action
                         },
                         child: Text('Abbrechen'),
