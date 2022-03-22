@@ -10,9 +10,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 
+import 'XD_Anzeigeaufgebenstreet.dart';
+
 class XD_AnzeigeaufgebenArtikel1 extends StatefulWidget {
   int? n;
-  XD_AnzeigeaufgebenArtikel1({required this.n});
+  int? strassenfund;
+
+  XD_AnzeigeaufgebenArtikel1({required this.n, required this.strassenfund});
+
   @override
   _XDAnzeigeaufgebenArtikel1 createState() => new _XDAnzeigeaufgebenArtikel1();
 }
@@ -21,9 +26,23 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
   static List<Asset> images2 = <Asset>[];
   static File? camimage;
   late int? n = widget.n;
+  int haus = 0;
+  int kleidung = 0;
+  int sport = 0;
+  int unterhaltung = 0;
+  int technik = 0;
+  int baby = 0;
+  int lebensmittel = 0;
+  int bauen = 0;
+  int kosmetik = 0;
+  int tier = 0;
+  int fahrzeug = 0;
+  int pfand = 0;
+  late int? strassenfund = widget.strassenfund;
 
   final formatter = intl.NumberFormat.decimalPattern();
   int i = 2;
+
   @override
   void initState() {
     super.initState();
@@ -74,6 +93,7 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
         context,
         MaterialPageRoute(
             builder: (context) => XD_AnzeigeaufgebenArtikel4(
+                  strassenfund: strassenfund,
                   images2: images2,
                   n: n,
                 )),
@@ -211,12 +231,50 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
                       top: 477.0,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeaufgeben10(
-                                    images2: images2,
-                                    camimage: camimage,
-                                    n: n,
-                                  )));
+                          if (strassenfund == 0) {
+                            print(strassenfund);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => XD_Anzeigeaufgeben10(
+                                      images2: images2,
+                                      camimage: camimage,
+                                      n: n,
+                                      haus: haus,
+                                      kleidung: kleidung,
+                                      sport: sport,
+                                      unterhaltung: unterhaltung,
+                                      technik: technik,
+                                      baby: baby,
+                                      lebensmittel: lebensmittel,
+                                      bauen: bauen,
+                                      kosmetik: kosmetik,
+                                      tier: tier,
+                                      fahrzeug: fahrzeug,
+                                      pfand: pfand,
+                                      strassenfund: strassenfund,
+                                    )));
+                          }
+                          ;
+                          if (strassenfund == 1) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => XD_Anzeigeaufgebenstreet(
+                                      images2: images2,
+                                      camimage: camimage,
+                                      n: n,
+                                      haus: haus,
+                                      kleidung: kleidung,
+                                      sport: sport,
+                                      unterhaltung: unterhaltung,
+                                      technik: technik,
+                                      baby: baby,
+                                      lebensmittel: lebensmittel,
+                                      bauen: bauen,
+                                      kosmetik: kosmetik,
+                                      tier: tier,
+                                      fahrzeug: fahrzeug,
+                                      pfand: pfand,
+                                      strassenfund: strassenfund,
+                                    )));
+                          }
                           //Bestätigen Action
                         },
                         child: Text('Bestätigen'),
@@ -235,6 +293,7 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
                           i = 2;
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                                    strassenfund: strassenfund,
                                     n: n,
                                   )));
                           //Bestätigen Action

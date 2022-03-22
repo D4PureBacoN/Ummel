@@ -4,7 +4,7 @@ import 'package:app_ummel/XD_Map1.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 
-import './XD_SucheKategorien.dart';
+import 'XD_SucheKategorien1.dart';
 
 class XD_Suche extends StatelessWidget {
   XD_Suche({
@@ -86,7 +86,7 @@ class XD_Suche extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => XD_SucheKategorien()));
+                      builder: (context) => XD_SucheKategorien1()));
                   //Bestätigen Action
                 },
                 child: Text(

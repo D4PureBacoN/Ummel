@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import './XD_Suche.dart';
-import './XD_SucheKategorien.dart';
 import './XD_TopKomponente.dart';
 
 class XD_SucheKategorien1 extends StatelessWidget {
@@ -167,7 +166,7 @@ class XD_SucheKategorien1 extends StatelessWidget {
                             transition: LinkTransition.Fade,
                             ease: Curves.easeOut,
                             duration: 0.3,
-                            pageBuilder: () => XD_SucheKategorien(),
+                            pageBuilder: () => XD_Suche(),
                           ),
                         ],
                         child: Container(

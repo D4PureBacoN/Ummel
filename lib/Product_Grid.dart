@@ -1,16 +1,17 @@
 import 'package:app_ummel/XD_Anzeigeanschauen.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class Storage {
-  final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+  final firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
 
   Future<firebase_storage.ListResult> listImages() async {
-    firebase_storage.ListResult productImages = await storage.ref('products_img').listAll();
+    firebase_storage.ListResult productImages =
+        await storage.ref('products_img').listAll();
 
     productImages.items.forEach((firebase_storage.Reference ref) {
       print('Found files $ref');
@@ -19,7 +20,8 @@ class Storage {
   }
 
   Future<String> downloadURL(String imageName) async {
-    String downloadURL = await storage.ref('products_img/$imageName').getDownloadURL();
+    String downloadURL =
+        await storage.ref('products_img/$imageName').getDownloadURL();
     return downloadURL;
   }
 }
@@ -29,27 +31,31 @@ class ProductGrid extends StatefulWidget {
   _ProductGridState createState() => _ProductGridState();
 }
 
-
 class _ProductGridState extends State<ProductGrid> {
-  final Stream<QuerySnapshot> products = FirebaseFirestore.instance.collection('products').snapshots();
+  final Stream<QuerySnapshot> products = FirebaseFirestore.instance
+      .collection('products')
+      .where("strassenfund", isLessThan: 1)
+      .snapshots();
   final Storage storage = Storage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
         stream: products,
-        builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong.');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Text('Loading');
           }
+
           final data = snapshot.requireData;
           return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             itemCount: data.size,
-            itemBuilder: (context,index) {
+            itemBuilder: (context, index) {
               return Card(
                 elevation: 4.0,
                 child: GestureDetector(
@@ -58,25 +64,33 @@ class _ProductGridState extends State<ProductGrid> {
                       await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => XD_Anzeigeanschauen(data: data, productindex: index, storage: storage)));
+                              builder: (context) => XD_Anzeigeanschauen(
+                                  data: data,
+                                  productindex: index,
+                                  storage: storage)));
                     },
                     child: Column(
                       children: [
                         //################
                         FutureBuilder(
-                            future: storage.downloadURL('${data.docs[index]['image1']}'),
-                            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                              if(snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+                            future: storage
+                                .downloadURL('${data.docs[index]['image1']}'),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<String> snapshot) {
+                              if (snapshot.connectionState ==
+                                      ConnectionState.done &&
+                                  snapshot.hasData) {
                                 return Container(
                                     width: 200,
                                     height: 150,
                                     child: Image.network(
                                       snapshot.data!,
                                       fit: BoxFit.cover,
-                                    )
-                                );
+                                    ));
                               }
-                              if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData)  {
+                              if (snapshot.connectionState ==
+                                      ConnectionState.waiting ||
+                                  !snapshot.hasData) {
                                 return CircularProgressIndicator();
                               }
                               return Container();

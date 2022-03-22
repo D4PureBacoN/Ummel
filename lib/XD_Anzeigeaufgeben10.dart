@@ -27,16 +27,59 @@ class XD_Anzeigeaufgeben10 extends StatefulWidget {
   List<Asset>? images2 = <Asset>[];
   File? camimage;
   int? n;
+  int? haus;
+  int? kleidung;
+  int? sport;
+  int? unterhaltung;
+  int? technik;
+  int? baby;
+  int? lebensmittel;
+  int? bauen;
+  int? kosmetik;
+  int? tier;
+  int? fahrzeug;
+  int? pfand;
+  int? strassenfund;
 
   XD_Anzeigeaufgeben10(
-      {required this.images2, required this.camimage, required this.n});
+      {required this.images2,
+      required this.camimage,
+      required this.n,
+      required this.haus,
+      required this.kleidung,
+      required this.sport,
+      required this.unterhaltung,
+      required this.technik,
+      required this.baby,
+      required this.lebensmittel,
+      required this.bauen,
+      required this.kosmetik,
+      required this.tier,
+      required this.fahrzeug,
+      required this.pfand,
+      required this.strassenfund});
 
   @override
   _XD_Anzeigeaufgeben10 createState() => _XD_Anzeigeaufgeben10();
 }
 
 class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
+  late List<Asset>? images2 = images2;
+  late File? camimage = camimage;
   late int? n = n;
+  late int? haus = haus;
+  late int? kleidung = kleidung;
+  late int? sport = sport;
+  late int? unterhaltung = unterhaltung;
+  late int? technik = technik;
+  late int? baby = baby;
+  late int? lebensmittel = lebensmittel;
+  late int? bauen = bauen;
+  late int? kosmetik = kosmetik;
+  late int? tier = tier;
+  late int? fahrzeug = fahrzeug;
+  late int? pfand = pfand;
+  late int? strassenfund = widget.strassenfund;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -66,7 +109,6 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.images2);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xffffffff),
@@ -261,7 +303,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     ),
                   ),
                   Container(height: 20),
-                  SizedBox(
+                  Container(
                     width: 340.0,
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
@@ -269,7 +311,23 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_SucheKategorien()));
+                              builder: (context) => XD_SucheKategorien(
+                                  images2: images2,
+                                  camimage: camimage,
+                                  n: n,
+                                  haus: haus,
+                                  kleidung: kleidung,
+                                  sport: sport,
+                                  unterhaltung: unterhaltung,
+                                  technik: technik,
+                                  baby: baby,
+                                  lebensmittel: lebensmittel,
+                                  bauen: bauen,
+                                  kosmetik: kosmetik,
+                                  tier: tier,
+                                  fahrzeug: fahrzeug,
+                                  pfand: pfand,
+                                  strassenfund: strassenfund)));
                           //Bestätigen Action
                         },
                         child: Text(
@@ -305,6 +363,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                       ),
                     ),
                   ),
+                  Container(height: 40),
                 ],
               ),
             ),
@@ -375,6 +434,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       'image5': _FormData.user + "_" + _FormData.name + "5",
       'image6': _FormData.user + "_" + _FormData.name + "6",
       'town': "Teststadt",
+      'strassenfund': strassenfund,
     };
 
     String ImageURL;

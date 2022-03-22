@@ -32,7 +32,8 @@ class XD_Anzeigeanschauen extends StatelessWidget {
       {Key? key,
       required this.data,
       required this.productindex,
-      required this.storage})
+      required this.storage,
+      storage2})
       : super(key: key);
 
   final int productindex;
@@ -100,10 +101,8 @@ class XD_Anzeigeanschauen extends StatelessWidget {
                                 return Container(
                                     width: 300,
                                     height: 300,
-                                    child: Image.network(
-                                      snapshot.data!,
-                                      fit: BoxFit.cover,
-                                    ));
+                                    child: Image.network(snapshot.data!,
+                                        fit: BoxFit.cover));
                               }
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {

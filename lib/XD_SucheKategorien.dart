@@ -1,15 +1,67 @@
+import 'dart:io';
+
+import 'package:app_ummel/XD_Anzeigeaufgeben10.dart';
 import 'package:app_ummel/XD_Favoriten.dart';
 import 'package:app_ummel/XD_Home.dart';
-import 'package:app_ummel/XD_Suche.dart';
 import 'package:app_ummel/ummel_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class XD_SucheKategorien extends StatefulWidget {
+  List<Asset>? images2 = <Asset>[];
+  File? camimage;
+  int? n;
+  int? haus;
+  int? kleidung;
+  int? sport;
+  int? unterhaltung;
+  int? technik;
+  int? baby;
+  int? lebensmittel;
+  int? bauen;
+  int? kosmetik;
+  int? tier;
+  int? fahrzeug;
+  int? pfand;
+  int? strassenfund;
+  XD_SucheKategorien(
+      {required this.images2,
+      required this.camimage,
+      required this.n,
+      required this.haus,
+      required this.kleidung,
+      required this.sport,
+      required this.unterhaltung,
+      required this.technik,
+      required this.baby,
+      required this.lebensmittel,
+      required this.bauen,
+      required this.kosmetik,
+      required this.tier,
+      required this.fahrzeug,
+      required this.pfand,
+      required this.strassenfund});
   _SucheKategorien createState() => _SucheKategorien();
 }
 
 class _SucheKategorien extends State<XD_SucheKategorien> {
+  late List<Asset>? images2 = images2;
+  late File? camimage = camimage;
+  late int? n = n;
+  late int? haus = haus;
+  late int? kleidung = kleidung;
+  late int? sport = sport;
+  late int? unterhaltung = unterhaltung;
+  late int? technik = technik;
+  late int? baby = baby;
+  late int? lebensmittel = lebensmittel;
+  late int? bauen = bauen;
+  late int? kosmetik = kosmetik;
+  late int? tier = tier;
+  late int? fahrzeug = fahrzeug;
+  late int? pfand = pfand;
+  late int? strassenfund = widget.strassenfund;
   bool _hasBeenPressed1 = false;
   bool _hasBeenPressed2 = false;
   bool _hasBeenPressed3 = false;
@@ -450,8 +502,24 @@ class _SucheKategorien extends State<XD_SucheKategorien> {
                   alignment: Alignment.center,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => XD_Suche()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => XD_Anzeigeaufgeben10(
+                              images2: images2,
+                              camimage: camimage,
+                              n: n,
+                              haus: haus,
+                              kleidung: kleidung,
+                              sport: sport,
+                              unterhaltung: unterhaltung,
+                              technik: technik,
+                              baby: baby,
+                              lebensmittel: lebensmittel,
+                              bauen: bauen,
+                              kosmetik: kosmetik,
+                              tier: tier,
+                              fahrzeug: fahrzeug,
+                              pfand: pfand,
+                              strassenfund: strassenfund)));
                       //Bestätigen Action
                     },
                     child: Text('Bestätigen'),

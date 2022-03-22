@@ -11,6 +11,7 @@ class XD_Anzeigeaufgeben extends StatelessWidget {
   }) : super(key: key);
   @override
   int n = 0;
+  int strassenfund = 0;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
@@ -68,9 +69,11 @@ class XD_Anzeigeaufgeben extends StatelessWidget {
             top: 270.0,
             child: ElevatedButton(
               onPressed: () {
+                strassenfund = 0;
                 n = 1;
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                          strassenfund: strassenfund,
                           n: n,
                         )));
                 //Bestätigen Action
@@ -101,9 +104,11 @@ class XD_Anzeigeaufgeben extends StatelessWidget {
             top: 417.0,
             child: ElevatedButton(
               onPressed: () {
+                strassenfund = 1;
                 n = 0;
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => XD_AnzeigeaufgebenArtikel1(
+                          strassenfund: strassenfund,
                           n: n,
                         )));
                 //Bestätigen Action

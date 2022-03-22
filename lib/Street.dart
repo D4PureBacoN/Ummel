@@ -1,5 +1,6 @@
-import 'package:app_ummel/Product_Grid.dart';
 import 'package:flutter/material.dart';
+
+import 'Product_Gridstreet.dart';
 
 class Street extends StatelessWidget {
   Street({
@@ -12,19 +13,19 @@ class Street extends StatelessWidget {
       child: Scaffold(
         body: TabBarView(
           children: [
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
+            Center(child: ProductGridstreet()),
           ],
         ),
       ),
