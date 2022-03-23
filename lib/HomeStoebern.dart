@@ -1,9 +1,20 @@
 import 'package:app_ummel/Product_Grid.dart';
+import 'package:app_ummel/Product_Gridbaby.dart';
+import 'package:app_ummel/Product_Gridbauen.dart';
+import 'package:app_ummel/Product_Gridfahr.dart';
+import 'package:app_ummel/Product_Gridkleid.dart';
+import 'package:app_ummel/Product_Gridkosm.dart';
+import 'package:app_ummel/Product_Gridlebens.dart';
+import 'package:app_ummel/Product_Gridpfand.dart';
+import 'package:app_ummel/Product_Gridsport.dart';
+import 'package:app_ummel/Product_Gridtechnik.dart';
+import 'package:app_ummel/Product_Gridtier.dart';
+import 'package:app_ummel/Product_Gridunter.dart';
 import 'package:flutter/material.dart';
 
+import 'Product_Gridhaus.dart';
 
 class HomeStoebern extends StatelessWidget {
-
   HomeStoebern({
     Key? key,
   }) : super(key: key);
@@ -76,18 +87,18 @@ class HomeStoebern extends StatelessWidget {
         body: TabBarView(
           children: [
             Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
-            Center(child: ProductGrid()),
+            Center(child: ProductGridhaus()),
+            Center(child: ProductGridkleid()),
+            Center(child: ProductGridsport()),
+            Center(child: ProductGridunter()),
+            Center(child: ProductGridtechnik()),
+            Center(child: ProductGridbaby()),
+            Center(child: ProductGridlebens()),
+            Center(child: ProductGridbauen()),
+            Center(child: ProductGridkosm()),
+            Center(child: ProductGridtier()),
+            Center(child: ProductGridfahr()),
+            Center(child: ProductGridpfand()),
           ],
         ),
       ),

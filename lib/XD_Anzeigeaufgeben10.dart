@@ -11,8 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'XD_SucheKategorien.dart';
-
 class FormData {
   String name = "";
   String discription = "";
@@ -80,6 +78,18 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
   late int? fahrzeug = fahrzeug;
   late int? pfand = pfand;
   late int? strassenfund = widget.strassenfund;
+  bool _hasBeenPressed1 = false;
+  bool _hasBeenPressed2 = false;
+  bool _hasBeenPressed3 = false;
+  bool _hasBeenPressed4 = false;
+  bool _hasBeenPressed5 = false;
+  bool _hasBeenPressed6 = false;
+  bool _hasBeenPressed7 = false;
+  bool _hasBeenPressed8 = false;
+  bool _hasBeenPressed9 = false;
+  bool _hasBeenPressed10 = false;
+  bool _hasBeenPressed11 = false;
+  bool _hasBeenPressed12 = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -176,6 +186,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.sentences,
                       inputFormatters: [
                         new LengthLimitingTextInputFormatter(30),
                       ],
@@ -207,6 +218,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                   SizedBox(
                     width: 340,
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.sentences,
                       inputFormatters: [
                         new LengthLimitingTextInputFormatter(1000),
                       ],
@@ -242,6 +254,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.sentences,
                       inputFormatters: [
                         new LengthLimitingTextInputFormatter(5),
                       ],
@@ -275,6 +288,7 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                     height: 40,
                     width: 340,
                     child: TextFormField(
+                      textCapitalization: TextCapitalization.sentences,
                       inputFormatters: [
                         new LengthLimitingTextInputFormatter(50),
                       ],
@@ -310,25 +324,454 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
                       height: 45,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => XD_SucheKategorien(
-                                  images2: images2,
-                                  camimage: camimage,
-                                  n: n,
-                                  haus: haus,
-                                  kleidung: kleidung,
-                                  sport: sport,
-                                  unterhaltung: unterhaltung,
-                                  technik: technik,
-                                  baby: baby,
-                                  lebensmittel: lebensmittel,
-                                  bauen: bauen,
-                                  kosmetik: kosmetik,
-                                  tier: tier,
-                                  fahrzeug: fahrzeug,
-                                  pfand: pfand,
-                                  strassenfund: strassenfund)));
-                          //Bestätigen Action
+                          haus = 0;
+                          kleidung = 0;
+                          sport = 0;
+                          unterhaltung = 0;
+                          technik = 0;
+                          baby = 0;
+                          lebensmittel = 0;
+                          bauen = 0;
+                          kosmetik = 0;
+                          tier = 0;
+                          fahrzeug = 0;
+                          pfand = 0;
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  height: 500,
+                                  child: Center(
+                                    child: ListView(
+                                      scrollDirection: Axis.vertical,
+                                      children: <Widget>[
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            SizedBox(height: 20),
+                                            Text(
+                                              'Kategorie auswählen',
+                                              style: TextStyle(
+                                                fontFamily: 'Quicksand',
+                                                fontSize: 22,
+                                                color: const Color(0xffffb420),
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                            SizedBox(height: 20),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  haus = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Haus & Garten',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  kleidung = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Kleidung',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  sport = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Sport & Freizeit',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  unterhaltung = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Unterhaltung',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  technik = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Technik',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  baby = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Baby & Kind',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  lebensmittel = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Lebensmittel',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  bauen = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Bauen & Basteln',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  kosmetik = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Kosmetik',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  tier = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Tierbedarf',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  fahrzeug = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Fahrzeug',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () => {
+                                                  pfand = 1,
+                                                  Navigator.pop(context),
+                                                },
+                                                child: Text(
+                                                  'Pfand',
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontFamily: 'Quicksand',
+                                                    fontSize: 14,
+                                                    color:
+                                                        const Color(0xff000000),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                style: ElevatedButton.styleFrom(
+                                                  alignment: Alignment.center,
+                                                  primary: Color(0xffffffff),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0)),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(height: 20),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                haus = 0;
+                                                kleidung = 0;
+                                                sport = 0;
+                                                unterhaltung = 0;
+                                                technik = 0;
+                                                baby = 0;
+                                                lebensmittel = 0;
+                                                bauen = 0;
+                                                kosmetik = 0;
+                                                tier = 0;
+                                                fahrzeug = 0;
+                                                pfand = 0;
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                'Abbrechen',
+                                                style: TextStyle(
+                                                  fontFamily: 'Quicksand',
+                                                  fontSize: 16,
+                                                  color:
+                                                      const Color(0xffffffff),
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                fixedSize: const Size(350, 45),
+                                                primary: Color(0xffffb420),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              });
                         },
                         child: Text(
                           'Kategorie auswählen',
@@ -435,6 +878,18 @@ class _XD_Anzeigeaufgeben10 extends State<XD_Anzeigeaufgeben10> {
       'image6': _FormData.user + "_" + _FormData.name + "6",
       'town': "Teststadt",
       'strassenfund': strassenfund,
+      'haus & garten': haus,
+      'kleidung': kleidung,
+      'sport & freizeit': sport,
+      'unterhaltung': unterhaltung,
+      'technik': technik,
+      'baby & kind': baby,
+      'lebensmittel': lebensmittel,
+      'bauen & basteln': bauen,
+      'kosmetik': kosmetik,
+      'tierbedarf': tier,
+      'fahrzeug': fahrzeug,
+      'pfand': pfand,
     };
 
     String ImageURL;

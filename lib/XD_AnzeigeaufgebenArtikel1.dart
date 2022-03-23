@@ -143,13 +143,6 @@ class _XDAnzeigeaufgebenArtikel1 extends State<XD_AnzeigeaufgebenArtikel1> {
           ],
         ),
         body: Stack(alignment: Alignment.center, children: <Widget>[
-          /* Pinned.fromPins(
-            Pin(size: 300.0, start: 50.0),
-            Pin(size: 400.0, start: 320.0),
-            child: Expanded(
-              child: buildGridView(),
-            ),
-          ), */
           i == 2
               ? Stack(alignment: Alignment.center, children: <Widget>[
                   Positioned(
